@@ -141,11 +141,11 @@ export interface StepEntityMetadata extends StepGraphObjectMetadata {
    * "S3 Bucket"
    */
   resourceName: string;
-  _class: string | string[];
+  _type: string;
 }
 
 export interface StepRelationshipMetadata extends StepGraphObjectMetadata {
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   sourceType: string;
   targetType: string;
 }
@@ -153,7 +153,7 @@ export interface StepRelationshipMetadata extends StepGraphObjectMetadata {
 export interface StepMappedRelationshipMetadata
   extends StepGraphObjectMetadata {
   sourceType: string;
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   targetType: string;
   direction: RelationshipDirection;
 }

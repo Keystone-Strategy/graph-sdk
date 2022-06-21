@@ -11,14 +11,14 @@ import {
 import { RelationshipClass } from '@jupiterone/data-model';
 
 type DirectRelationshipOptions = {
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   from: Entity;
   to: Entity;
   properties?: AdditionalRelationshipProperties;
 };
 
 type DirectRelationshipLiteralOptions = {
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   fromType: string;
   fromKey: string;
   toType: string;
@@ -153,8 +153,8 @@ function isValidDataModelClass(_class: string) {
 export function createDirectRelationship(
   options: DirectRelationshipOptions | DirectRelationshipLiteralOptions,
 ): ExplicitRelationship {
-  const { _class } = options;
-  const normalizedClass = _class.toUpperCase();
+  const { _type } = options;
+  const normalizedClass = _type.toUpperCase();
 
   if (!isValidDataModelClass(normalizedClass)) {
     throw createInvalidateRelationshipClassError(normalizedClass);
@@ -164,7 +164,7 @@ export function createDirectRelationship(
     return createRelationship(options);
   } else {
     return createRelationship({
-      _class: options._class,
+      _type,
       fromType: options.from._type,
       fromKey: options.from._key,
       toType: options.to._type,
@@ -251,22 +251,20 @@ function createMappedRelationshipLiteral(
 }
 
 function createRelationship({
-  _class,
+  _type,
   fromType,
   fromKey,
   toType,
   toKey,
   properties,
 }: DirectRelationshipLiteralOptions): ExplicitRelationship {
-  const relationshipClass = _class.toUpperCase();
-  const _type = generateRelationshipType(_class, fromType, toType);
   return {
-    _key: `${fromKey}|${_class.toLowerCase()}|${toKey}`,
+    _key: `${fromKey}|${_type.toLowerCase()}|${toKey}`,
     _type,
-    _class: relationshipClass,
     _fromEntityKey: fromKey,
     _toEntityKey: toKey,
-    displayName: relationshipClass,
+    fromType,
+    toType,
     ...properties,
   };
 }

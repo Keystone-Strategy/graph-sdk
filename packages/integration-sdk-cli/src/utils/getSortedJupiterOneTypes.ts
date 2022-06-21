@@ -82,7 +82,7 @@ function alphabetizeMetadataProperties(
 }
 
 function collectGraphObjectMetadataFromSteps(
-  steps: Step<IntegrationStepExecutionContext<object>>[],
+  steps: any[],
 ): StepGraphObjectMetadataProperties {
   const orderedStepNames = buildStepDependencyGraph(steps).overallOrder();
   const integrationStepMap = integrationStepsToMap(steps);

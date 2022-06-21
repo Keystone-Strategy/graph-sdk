@@ -43,14 +43,14 @@ export function findTargetEntity(
     const targetEntity = pick(_mapping.targetEntity, targetFilterKey);
 
     const matchedEntity = entities.find((entity) => {
-      const { _class: entityClass, ...entityRest } = entity;
-      const { _class: targetEntityClass, ...targetEntityRest } = targetEntity;
+      const { _type: entityType, ...entityRest } = entity;
+      const { _type: targetEntityType, ...targetEntityRest } = targetEntity;
 
       return (
         isMatch(entityRest, targetEntityRest) &&
         isClassMatch(
-          entityClass,
-          targetEntityClass as string | string[] | undefined,
+          entityType,
+          targetEntityType as string | string[] | undefined,
         )
       );
     });
