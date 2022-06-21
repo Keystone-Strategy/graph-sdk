@@ -41,7 +41,6 @@ type PrimitiveEntityPropertyValue =
   | null;
 
 export type Entity = EntityCoreProperties &
-  RawDataTracking &
   EntityAdditionalProperties;
 
 export interface EntityCoreProperties extends Omit<PersistedObject, '_class'> {
@@ -49,21 +48,13 @@ export interface EntityCoreProperties extends Omit<PersistedObject, '_class'> {
    * Relationships are allowed a single `_class` value; entities are
    * allowed multiple values.
    */
-  _class: string | string[];
+  _type: string;
 }
 
 type EntityAdditionalProperties = Record<string, EntityPropertyValue> &
   EntityIdProperty;
 
 type EntityPropertyValue = PrimitiveEntityPropertyValue | EntityRawData[];
-
-export interface RawDataTracking {
-  /**
-   * Maintains references to a collection of raw data accumulated during
-   * the construction of an entity.
-   */
-  _rawData?: EntityRawData[];
-}
 
 /**
  * Entities are typically produced by collecting resources from another system and
@@ -92,17 +83,5 @@ export type EntityRawData = {
    * ```
    */
   name: string;
-
-  /**
-   * A string or an object of any type representing the source content used
-   * to build an entity.
-   */
-  rawData: NonArrayObject | string;
 };
 
-type NonArrayObject = {
-  [k: string]: any;
-  // `reduceRight` is used determine the difference between an object and an array
-  // the side effect is that we can not have an object with a key of `reduceRight`
-  reduceRight?: never;
-};

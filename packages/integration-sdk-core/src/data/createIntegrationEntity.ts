@@ -5,9 +5,8 @@ import {
 } from '@jupiterone/data-model';
 
 import { IntegrationError } from '../errors';
-import { Entity, EntityRawData } from '../types';
+import { Entity } from '../types';
 import { parseTimePropertyValue } from './converters';
-import { validateRawData } from './rawData';
 import { assignTags, ResourceTagList, ResourceTagMap } from './tagging';
 
 const SUPPORTED_TYPES = ['string', 'number', 'boolean'];
@@ -72,7 +71,7 @@ export type IntegrationEntityData = {
  * A generated `Entity` that includes additional properties
  * specific to the entity class and some properties are guaranteed.
  */
-type GeneratedEntity = Entity & { _class: string[] };
+type GeneratedEntity = Entity
 
 export type IntegrationEntityBuilderInput = {
   /**
@@ -97,8 +96,6 @@ export function createIntegrationEntity(
 ): GeneratedEntity {
   const generatedEntity = generateEntity(input.entityData);
 
-  validateRawData(generatedEntity);
-
   if (process.env.ENABLE_GRAPH_OBJECT_SCHEMA_VALIDATION) {
     validateEntityWithSchema(generatedEntity);
   }
@@ -111,21 +108,10 @@ function generateEntity({
   assign,
   tagProperties,
 }: IntegrationEntityData): GeneratedEntity {
-  const _rawData: EntityRawData[] = [];
-  if (Object.entries(source).length > 0) {
-    _rawData.push({ name: 'default', rawData: source });
-  }
-  if (assign._rawData) {
-    _rawData.push(...assign._rawData);
-  }
-
-  const _class = Array.isArray(assign._class) ? assign._class : [assign._class];
-
   const entity: GeneratedEntity = {
-    ...whitelistedProviderData(source, _class),
+    ...whitelistedProviderData(source, assign._type),
     ...assign,
-    _class,
-    _rawData,
+    _type: assign._type,
   };
 
   if (entity.createdOn === undefined) {
@@ -159,20 +145,6 @@ function generateEntity({
 
   assignTags(entity, source.tags, tagProperties);
 
-  // `assignTags` may populate `displayName` from the `source.tags`. When there
-  // is an `assign.displayName`, use that instead assuming that an assigned
-  // value is meant to override an automatic function.
-  if (assign.displayName) {
-    entity.displayName = assign.displayName;
-  }
-
-  // When a `displayName` is not derived from `source.tags` nor explicitly set
-  // by `assign.displayName`, use `entity.name`. This is a last attempt to
-  // to provide a value automatically.
-  if (!entity.displayName && entity.name) {
-    entity.displayName = entity.name as string;
-  }
-
   return entity;
 }
 
@@ -185,10 +157,10 @@ function generateEntity({
  */
 function whitelistedProviderData(
   source: ProviderSourceData,
-  _class: string[],
+  _type: string,
 ): Omit<ProviderSourceData, 'tags'> {
   const whitelistedProviderData: ProviderSourceData = {};
-  const schemaProperties = schemaWhitelistedPropertyNames(_class);
+  const schemaProperties = schemaWhitelistedPropertyNames(_type);
   for (const [key, value] of Object.entries(source)) {
     if (value != null && schemaProperties.includes(key)) {
       const valueType = Array.isArray(value) ? typeof value[0] : typeof value;
@@ -211,24 +183,23 @@ export const schemaWhitelists = new Map<string, string[]>();
  * of classes. Values are cached to avoid rebuilding, since there could be
  * thousands of entities constructed during a single execution.
  */
-export function schemaWhitelistedPropertyNames(_class: string[]): string[] {
-  const whitelistKey = _class.join(',');
-  let properties = schemaWhitelists.get(whitelistKey);
+export function schemaWhitelistedPropertyNames(_type: string): string[] {
+  let properties = schemaWhitelists.get(_type);
   if (!properties) {
     properties = [];
-    for (const c of _class) {
-      const schema = getSchema(c);
+
+      const schema = getSchema(_type);
       if (!schema) {
         throw new IntegrationError({
-          code: 'NO_SCHEMA_FOR_CLASS',
-          message: `Class '${c}' does not yet have a schema supported by the SDK!`,
+          code: 'NO_SCHEMA_FOR_TYPE',
+          message: `Type '${_type}' does not yet have a schema supported by the SDK!`,
         });
       }
       for (const name of schemaPropertyNames(schema)) {
         properties.push(name);
       }
-    }
-    schemaWhitelists.set(whitelistKey, properties);
+    
+    schemaWhitelists.set(_type, properties);
   }
   return properties;
 }

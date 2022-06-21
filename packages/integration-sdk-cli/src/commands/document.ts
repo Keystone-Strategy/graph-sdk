@@ -121,7 +121,7 @@ function generateEntityTableFromAllStepEntityMetadata(
     ...metadata.map((v) => [
       v.resourceName,
       `\`${v._type}\``,
-      buildEntityClassDocumentationValue(v._class),
+      buildEntityClassDocumentationValue(v._type),
     ]),
   ]);
 
@@ -132,10 +132,10 @@ function generateRelationshipTableFromAllStepEntityMetadata(
   metadata: StepRelationshipMetadata[],
 ): string {
   const generated = table([
-    ['Source Entity `_type`', 'Relationship `_class`', 'Target Entity `_type`'],
+    ['Source Entity `_type`', 'Relationship `_type`', 'Target Entity `_type`'],
     ...metadata.map((v) => [
       `\`${v.sourceType}\``,
-      `**${v._class}**`,
+      `**${v._type}**`,
       `\`${v.targetType}\``,
     ]),
   ]);
@@ -149,13 +149,13 @@ function generateMappedRelationshipTableFromAllStepEntityMetadata(
   const generated = table([
     [
       'Source Entity `_type`',
-      'Relationship `_class`',
+      'Relationship `_type`',
       'Target Entity `_type`',
       'Direction',
     ],
     ...metadata.map((v) => [
       `\`${v.sourceType}\``,
-      `**${v._class}**`,
+      `**${v._type}**`,
       `\`*${v.targetType}*\``,
       `${v.direction}`,
     ]),

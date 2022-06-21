@@ -177,12 +177,12 @@ function getNodesFromStepEntityMetadata(
       .filter((e) => targetTypes?.has(e._type))
       .map((e) => ({
         id: e._type,
-        label: `${e.resourceName}\n${e._type}\n${e._class}`,
+        label: `${e.resourceName}\n${e._type}\n${e._type}`,
       }));
   } else {
     return entities.map((e) => ({
       id: e._type,
-      label: `${e.resourceName}\n${e._type}\n${e._class}`,
+      label: `${e.resourceName}\n${e._type}\n${e._type}`,
     }));
   }
 }
@@ -206,7 +206,7 @@ function getEdgesFromStepRelationshipMetadata(
     .map((r) => ({
       from: r.sourceType,
       to: r.targetType,
-      label: r._class,
+      label: r._type,
     }));
 }
 
@@ -241,14 +241,14 @@ function getNodesAndEdgesFromStepMappedRelationshipMetadata(
       mappedRelationshipEdges.push({
         from: r.sourceType,
         to: r.targetType,
-        label: r._class,
+        label: r._type,
         ...MAPPED_RELATIONSHIP_OPTIONS,
       });
     } else {
       mappedRelationshipEdges.push({
         from: r.targetType,
         to: r.sourceType,
-        label: r._class,
+        label: r._type,
         ...MAPPED_RELATIONSHIP_OPTIONS,
       });
     }
