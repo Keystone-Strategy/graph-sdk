@@ -6,7 +6,6 @@
   "exclude": ["**/dist/*"],
   "references": [
     { "path": "../integration-sdk-core" },
-    { "path": "../integration-sdk-runtime" },
-    { "path": "../integration-sdk-private-test-utils" }
+    { "path": "../integration-sdk-runtime" }
   ]
 }
