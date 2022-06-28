@@ -1,5 +1,5 @@
 {
-  "name": "@jupiterone/integration-sdk-core",
+  "name": "@keystone-labs/integration-sdk-core",
   "version": "8.4.5",
   "description": "The SDK for developing JupiterOne integrations",
   "main": "dist/src/index.js",
