@@ -598,10 +598,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@keystone-labs/data-model@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.yarnpkg.com/@keystone-labs/data-model/-/data-model-0.44.0.tgz#a39fc64d45c918288843ff28f51929a8d32745cc"
-  integrity sha512-nzTS04VIbziUwc0+Q1b78Vb/91tGcSib05L7G4bxZupUNjTHBRkOoUvbijfK1F/0WuNbmNwEBjW6RKPC473gTA==
+"@keystone-labs/data-model@0.44.0-k-1.0.0":
+  version "0.44.0-k-1.0.0"
+  resolved "https://registry.yarnpkg.com/@keystone-labs/data-model/-/data-model-0.44.0-k-1.0.0.tgz#46ae71d9a54bff6367e3b0a0513e81318316a95f"
+  integrity sha512-rI3wFNEbwVvmESl9lK320p3bWNRjTujpEeiQpkk2DryHvbunzb23RwcvBAfBhx9Kx0X5UgKgiusZYQUZEY3R0Q==
   dependencies:
     ajv "^8.0.0"
     ajv-formats "^2.0.0"
