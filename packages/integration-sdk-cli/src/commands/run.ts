@@ -1,7 +1,7 @@
 import { createCommand } from 'commander';
 import path from 'path';
 
-import { Metric } from '@jupiterone/integration-sdk-core';
+import { Metric } from '@keystone-labs/integration-sdk-core';
 import {
   abortSynchronization,
   createApiClient,
@@ -15,8 +15,8 @@ import {
   getApiBaseUrl,
   getApiKeyFromEnvironment,
   initiateSynchronization,
-} from '@jupiterone/integration-sdk-runtime';
-import { createPersisterApiStepGraphObjectDataUploader } from '@jupiterone/integration-sdk-runtime/dist/src/execution/uploader';
+} from '@keystone-labs/integration-sdk-runtime';
+import { createPersisterApiStepGraphObjectDataUploader } from '@keystone-labs/integration-sdk-runtime/dist/src/execution/uploader';
 
 import { loadConfig } from '../config';
 import * as log from '../log';

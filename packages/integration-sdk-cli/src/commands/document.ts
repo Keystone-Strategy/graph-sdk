@@ -7,7 +7,7 @@ import {
   StepGraphObjectMetadataProperties,
   StepRelationshipMetadata,
   StepMappedRelationshipMetadata,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import * as log from '../log';
 import {

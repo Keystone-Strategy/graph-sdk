@@ -15,7 +15,7 @@
     "build:dist": "tsc -p tsconfig.json --declaration"
   },
   "dependencies": {
-    "@jupiterone/integration-sdk-core": "^8.4.5",
+    "@keystone-labs/integration-sdk-core": "^8.4.5",
     "lodash": "^4.17.15",
     "uuid": "^7.0.3"
   },

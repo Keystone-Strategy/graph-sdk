@@ -8,7 +8,7 @@ import {
   MappedRelationship,
   RelationshipClass,
   RelationshipDirection,
-} from '@jupiterone/integration-sdk-core/src';
+} from '@keystone-labs/integration-sdk-core/src';
 
 describe('#createMappedRelationshipNodesAndEdges', () => {
   const mappedRelationships = [

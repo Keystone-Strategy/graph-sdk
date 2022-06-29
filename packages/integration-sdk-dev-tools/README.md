@@ -13,7 +13,7 @@ This module is opinionated and bundles in the following dependencies:
 - `lint-staged`
 
 For convenience, this package also comes bundled with the
-`@jupiterone/integration-sdk-cli` module.
+`@keystone-labs/integration-sdk-cli` module.
 
 ## Installation
 

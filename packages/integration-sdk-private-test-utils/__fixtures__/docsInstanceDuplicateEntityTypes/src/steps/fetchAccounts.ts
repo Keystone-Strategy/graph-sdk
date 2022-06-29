@@ -1,5 +1,5 @@
 import noop from 'lodash/noop';
-import { StepExecutionContext, Step } from '@jupiterone/integration-sdk-core';
+import { StepExecutionContext, Step } from '@keystone-labs/integration-sdk-core';
 
 const fetchGroupsStep: Step<StepExecutionContext> = {
   id: 'fetch-accounts',

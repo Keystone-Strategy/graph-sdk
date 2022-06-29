@@ -3,7 +3,7 @@ import NodeHttpAdapter from '@pollyjs/adapter-node-http';
 import FSPersister from '@pollyjs/persister-fs';
 
 import { loadProjectStructure } from '@jupiterone/integration-sdk-private-test-utils';
-import { SynchronizationJobStatus } from '@jupiterone/integration-sdk-core';
+import { SynchronizationJobStatus } from '@keystone-labs/integration-sdk-core';
 
 import { createCli } from '../index';
 

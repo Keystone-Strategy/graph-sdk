@@ -6,7 +6,7 @@ import { loadConfigFromEnvironmentVariables } from '../config';
 import {
   IntegrationInstanceConfigFieldMap,
   IntegrationInstanceConfigField,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 jest.mock('fs');
 

@@ -1,7 +1,7 @@
 import {
   IntegrationInstance,
   IntegrationInvocationConfig,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { loadConfigFromEnvironmentVariables } from './config';
 

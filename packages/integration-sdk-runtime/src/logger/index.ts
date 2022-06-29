@@ -27,7 +27,7 @@ import {
   IntegrationEvent,
   PublishInfoEventInput,
   PublishErrorEventInput,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export * from './registerEventHandlers';
 

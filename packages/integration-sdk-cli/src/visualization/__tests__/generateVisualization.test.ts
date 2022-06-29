@@ -6,7 +6,7 @@ import {
   getRootStorageDirectory,
   readJsonFromPath,
   writeFileToPath,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import * as log from '../../log';
 import { nothingToDisplayMessage } from '../../utils/generateVisHTML';
@@ -15,7 +15,7 @@ import { IntegrationData } from '../types/IntegrationData';
 
 jest.mock('fs');
 jest.mock('globby');
-jest.mock('@jupiterone/integration-sdk-runtime');
+jest.mock('@keystone-labs/integration-sdk-runtime');
 jest.mock('../../log');
 
 const mockedGlobby = mocked(globby);

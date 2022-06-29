@@ -1,6 +1,6 @@
 import noop from 'lodash/noop';
-import { StepExecutionContext, Step } from '@jupiterone/integration-sdk-core';
-import { RelationshipClass } from '@jupiterone/data-model';
+import { StepExecutionContext, Step } from '@keystone-labs/integration-sdk-core';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
 const fetchGroupsStep: Step<StepExecutionContext> = {
   id: 'fetch-groups',

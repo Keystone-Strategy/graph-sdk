@@ -1,4 +1,4 @@
-import * as runtime from '@jupiterone/integration-sdk-runtime';
+import * as runtime from '@keystone-labs/integration-sdk-runtime';
 import axios from 'axios';
 import { mocked } from 'ts-jest/utils';
 import { vol } from 'memfs';
@@ -18,7 +18,7 @@ import {
 import * as log from '../log';
 import { createCli } from '..';
 
-jest.mock('@jupiterone/integration-sdk-runtime');
+jest.mock('@keystone-labs/integration-sdk-runtime');
 jest.mock('axios');
 jest.mock('ora');
 jest.mock('fs');

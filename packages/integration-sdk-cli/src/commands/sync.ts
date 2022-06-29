@@ -8,7 +8,7 @@ import {
   getApiBaseUrl,
   getApiKeyFromEnvironment,
   synchronizeCollectedData,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import * as log from '../log';
 

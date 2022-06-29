@@ -3,7 +3,7 @@ import {
   IntegrationStepExecutionContext,
   StepExecutionContext,
   Step,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 const fetchAccountsStep: Step<StepExecutionContext> = {
   id: 'fetch-accounts',

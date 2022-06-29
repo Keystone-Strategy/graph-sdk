@@ -22,7 +22,7 @@
     "prepack": "yarn build:dist"
   },
   "dependencies": {
-    "@jupiterone/integration-sdk-runtime": "^8.4.5",
+    "@keystone-labs/integration-sdk-runtime": "^8.4.5",
     "aws-sdk": "^2.1091.0",
     "chalk": "^4",
     "commander": "^5.0.0",

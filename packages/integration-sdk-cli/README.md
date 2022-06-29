@@ -1,4 +1,4 @@
-# @jupiterone/integration-sdk-cli
+# @keystone-labs/integration-sdk-cli
 
 _NOTE:_ This project is currently under development and the API interface is not
 stable. Use at your own risk.
@@ -9,9 +9,9 @@ locally.
 ## Installation
 
 ```
-npm install @jupiterone/integration-sdk-cli
+npm install @keystone-labs/integration-sdk-cli
 
 # or
 
-yarn add @jupiterone/integration-sdk-cli
+yarn add @keystone-labs/integration-sdk-cli
 ```

@@ -2,7 +2,7 @@ import {
   Entity,
   ExplicitRelationship,
   MappedRelationship,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export interface IntegrationData {
   entities: Entity[];

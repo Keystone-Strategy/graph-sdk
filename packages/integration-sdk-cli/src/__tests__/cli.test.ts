@@ -1,7 +1,7 @@
 import * as nodeFs from 'fs';
 import path from 'path';
 
-import { StepResultStatus } from '@jupiterone/integration-sdk-core';
+import { StepResultStatus } from '@keystone-labs/integration-sdk-core';
 import {
   getProjectDirectoryPath,
   loadProjectStructure,

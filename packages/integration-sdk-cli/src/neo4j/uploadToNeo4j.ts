@@ -2,7 +2,7 @@ import { Neo4jGraphStore } from './neo4jGraphStore';
 import {
   iterateParsedGraphFiles,
   isDirectoryPresent,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import fs from 'fs'
 import { Parser } from 'json2csv'

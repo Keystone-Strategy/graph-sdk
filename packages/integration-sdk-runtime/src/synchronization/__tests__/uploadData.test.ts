@@ -1,7 +1,7 @@
 import times from 'lodash/times';
 import noop from 'lodash/noop';
 
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 import { generateSynchronizationJob } from './util/generateSynchronizationJob';
 
 import { getApiBaseUrl, createApiClient } from '../../api';

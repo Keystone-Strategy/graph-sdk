@@ -10,7 +10,7 @@ import {
   StepExecutionContext,
   StepResultStatus,
   StepStartStates,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { timeOperation } from '../metrics';
 import { GraphObjectStore } from '../storage';

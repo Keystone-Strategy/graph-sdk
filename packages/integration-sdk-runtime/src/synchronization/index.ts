@@ -7,7 +7,7 @@ import {
   Entity,
   Relationship,
   SynchronizationJob,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { IntegrationLogger } from '../logger';
 

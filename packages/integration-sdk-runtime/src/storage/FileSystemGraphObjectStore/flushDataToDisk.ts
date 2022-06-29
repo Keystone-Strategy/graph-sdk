@@ -2,7 +2,7 @@ import pMap from 'p-map';
 import { v4 as uuid } from 'uuid';
 import groupBy from 'lodash/groupBy';
 
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 
 import { writeJsonToPath, symlink } from '../../fileSystem';
 

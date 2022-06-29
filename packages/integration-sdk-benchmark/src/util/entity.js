@@ -1,4 +1,4 @@
-const { createIntegrationEntity } = require('@jupiterone/integration-sdk-core');
+const { createIntegrationEntity } = require('@keystone-labs/integration-sdk-core');
 const { v4: uuid } = require('uuid');
 
 function createMockEntity(_key) {

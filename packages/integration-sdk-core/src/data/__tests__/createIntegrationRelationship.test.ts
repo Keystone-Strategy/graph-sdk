@@ -1,4 +1,4 @@
-import { RelationshipClass } from '@jupiterone/data-model';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
 import {
   Entity,

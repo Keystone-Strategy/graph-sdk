@@ -1,7 +1,7 @@
 const mockCreateIntegrationLogger = jest.fn();
 
-jest.doMock('@jupiterone/integration-sdk-runtime', () => ({
-  ...(jest.requireActual('@jupiterone/integration-sdk-runtime') as any),
+jest.doMock('@keystone-labs/integration-sdk-runtime', () => ({
+  ...(jest.requireActual('@keystone-labs/integration-sdk-runtime') as any),
   createIntegrationLogger: mockCreateIntegrationLogger,
 }));
 
@@ -11,7 +11,7 @@ import NodeHttpAdapter from '@pollyjs/adapter-node-http';
 import FSPersister from '@pollyjs/persister-fs';
 
 import { loadProjectStructure } from '@jupiterone/integration-sdk-private-test-utils';
-import { SynchronizationJobStatus } from '@jupiterone/integration-sdk-core';
+import { SynchronizationJobStatus } from '@keystone-labs/integration-sdk-core';
 
 import { generateSynchronizationJob } from './util/synchronization';
 
@@ -27,7 +27,7 @@ Polly.register(NodeHttpAdapter);
 Polly.register(FSPersister);
 
 const { createIntegrationLogger } = jest.requireActual(
-  '@jupiterone/integration-sdk-runtime',
+  '@keystone-labs/integration-sdk-runtime',
 );
 
 let polly: Polly;

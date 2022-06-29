@@ -15,8 +15,8 @@
     "benchmark": "node ./src/index.js"
   },
   "dependencies": {
-    "@jupiterone/integration-sdk-core": "^8.4.5",
-    "@jupiterone/integration-sdk-runtime": "^8.4.5",
+    "@keystone-labs/integration-sdk-core": "^8.4.5",
+    "@keystone-labs/integration-sdk-runtime": "^8.4.5",
     "benchmark": "^2.1.4"
   }
 }

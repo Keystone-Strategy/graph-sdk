@@ -167,7 +167,7 @@ import {
   IntegrationExecutionContext,
   IntegrationProviderAuthenticationError,
   IntegrationValidationError,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { IntegrationConfig } from './types';
 
@@ -211,7 +211,7 @@ each step.
 Example:
 
 ```typescript
-import { IntegrationExecutionContext } from '@jupiterone/integration-sdk-core';
+import { IntegrationExecutionContext } from '@keystone-labs/integration-sdk-core';
 
 import { IntegrationConfig } from './types';
 
@@ -300,7 +300,7 @@ Example:
 import {
   Entity,
   IntegrationInvocationConfig,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { IntegrationConfig, IntegrationStepContext } from './types';
 import getStepStartStates from './getStepStartStates';
 
@@ -627,7 +627,7 @@ Mapped relationships accept a `source` and `target` entity for constructing
 relationships.
 
 The `Internet` and `Everyone` global entities are exposed by the
-`@jupiterone/data-model` and can be used here.
+`@keystone-labs/data-model` and can be used here.
 
 The relationship direction can be specified using the `relationshipDirection`
 option.

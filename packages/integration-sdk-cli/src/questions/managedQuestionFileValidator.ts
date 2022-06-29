@@ -1,4 +1,4 @@
-import { ApiClient } from '@jupiterone/integration-sdk-runtime';
+import { ApiClient } from '@keystone-labs/integration-sdk-runtime';
 import { promises as fs } from 'fs';
 import * as yaml from 'js-yaml';
 import * as Runtypes from 'runtypes';

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import Alpha from '@lifeomic/alpha';
-import { IntegrationError } from '@jupiterone/integration-sdk-core';
+import { IntegrationError } from '@keystone-labs/integration-sdk-core';
 
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';

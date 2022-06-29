@@ -10,7 +10,7 @@ import {
   PartialDatasets,
   StepExecutionContext,
   StepStartStates,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import {
   getRootStorageDirectorySize,

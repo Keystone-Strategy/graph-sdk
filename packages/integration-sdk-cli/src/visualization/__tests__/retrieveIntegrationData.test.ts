@@ -1,16 +1,16 @@
 import { mocked } from 'ts-jest/utils';
 
-import { readJsonFromPath } from '@jupiterone/integration-sdk-runtime';
+import { readJsonFromPath } from '@keystone-labs/integration-sdk-runtime';
 import {
   createDirectRelationship,
   ExplicitRelationship,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { retrieveIntegrationData } from '../retrieveIntegrationData';
 import { IntegrationData } from '../types';
-import { RelationshipClass } from '@jupiterone/data-model';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
-jest.mock('@jupiterone/integration-sdk-runtime');
+jest.mock('@keystone-labs/integration-sdk-runtime');
 
 const mockedReadJson = mocked(readJsonFromPath);
 

@@ -1,4 +1,4 @@
-import { IntegrationLogger, Metric } from '@jupiterone/integration-sdk-core';
+import { IntegrationLogger, Metric } from '@keystone-labs/integration-sdk-core';
 
 interface TimeOperationInput<T extends () => any> {
   logger: IntegrationLogger;

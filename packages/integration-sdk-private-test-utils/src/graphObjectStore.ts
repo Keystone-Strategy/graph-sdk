@@ -4,7 +4,7 @@ import {
   GraphObjectIteratee,
   Relationship,
   GraphObjectStore,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 /**
  * Custom implementation of GraphObjectStore that stores all entities and

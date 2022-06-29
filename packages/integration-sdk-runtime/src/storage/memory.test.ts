@@ -1,4 +1,4 @@
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 import { InMemoryGraphObjectStore } from './memory';
 import { v4 as uuid } from 'uuid';
 import {

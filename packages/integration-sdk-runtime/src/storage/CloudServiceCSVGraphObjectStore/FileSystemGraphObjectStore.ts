@@ -12,7 +12,7 @@ import {
   GraphObjectIndexMetadata,
   GetIndexMetadataForGraphObjectTypeParams,
   IntegrationStep,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import {
   iterateEntityTypeIndex,

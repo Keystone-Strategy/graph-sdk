@@ -11,7 +11,7 @@ import {
   Relationship,
   RelationshipClass,
   RelationshipDirection,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import {
   toMatchGraphObjectSchema,
   toMatchDirectRelationshipSchema,

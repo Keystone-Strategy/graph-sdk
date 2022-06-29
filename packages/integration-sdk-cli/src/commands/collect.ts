@@ -7,7 +7,7 @@ import {
   CloudServiceCSVGraphObjectStore,
   getRootStorageDirectory,
   prepareLocalStepCollection,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import { loadConfig } from '../config';
 import * as log from '../log';
