@@ -201,13 +201,13 @@ RETURN account, repo, user
 ### Fixed
 
 - Fixed [#603](https://github.com/JupiterOne/sdk/issues/603) - Add missing
-  `chalk` production dependency to `@keystone-labs/integration-sdk-cli`
+  `chalk` production dependency to `@jupiterone/integration-sdk-cli`
 
 ## [8.3.0] - 2022-02-03
 
 ### Changed
 
-- Bumped version of `@keystone-labs/data-model` to add `state` property to `Host`
+- Bumped version of `@jupiterone/data-model` to add `state` property to `Host`
   entity class
 
 ## [8.2.1] - 2022-01-25
@@ -251,13 +251,13 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `RelationshipClass.SENDS`
+- Bump `@jupiterone/data-model` to expose `RelationshipClass.SENDS`
 
 ## [8.1.2] - 2022-01-04
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to remove warning messages for `User` and
+- Bump `@jupiterone/data-model` to remove warning messages for `User` and
   `Person` entities
 
 ## [8.1.1] - 2022-01-04
@@ -271,7 +271,7 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `RelationshipClass.HOSTS` and
+- Bump `@jupiterone/data-model` to expose `RelationshipClass.HOSTS` and
   `RelationshipClass.LOGS`
 
 ## [8.0.0] - 2021-12-15
@@ -321,13 +321,13 @@ of the support.jupiterone.io site.
 ### Changed
 
 - Bump `@pollyjs` packages in `@jupiterone/integration-sdk-testing` and
-  `@keystone-labs/integration-sdk-cli`
+  `@jupiterone/integration-sdk-cli`
 
 ## [7.3.0] - 2021-10-25
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `VIOLATES` relationship class.
+- Bump `@jupiterone/data-model` to expose `VIOLATES` relationship class.
 
 ## [7.2.0] - 2021-10-22
 
@@ -384,7 +384,7 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `Issue` entity class.
+- Bump `@jupiterone/data-model` to expose `Issue` entity class.
 
 ## [6.21.0] - 2021-09-28
 
@@ -420,19 +420,19 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `Secret` entity class.
+- Bump `@jupiterone/data-model` to expose `Secret` entity class.
 
 ## [6.17.0] - 2021-08-27
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `Question` entity class.
+- Bump `@jupiterone/data-model` to expose `Question` entity class.
 
 ## [6.16.1] - 2021-08-27
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `RelationshipClass.ENFORCES`
+- Bump `@jupiterone/data-model` to expose `RelationshipClass.ENFORCES`
 
 ## [6.16.0] - 2021-08-25
 
@@ -477,7 +477,7 @@ of the support.jupiterone.io site.
 - Changed how `j1-integration visualize` displays placeholder entities. Now only
   properties present in `targetFilterKeys` are displayed in the graph, making
   target entities smaller. Also, set borders of placeholder entities to dashed.
-- Bump `@keystone-labs/data-model` to expose `Alert` entity schema.
+- Bump `@jupiterone/data-model` to expose `Alert` entity schema.
 - `createEventPublishingQueue` takes in an optional Axios config.
 
 ## 6.13.0 - 2021-07-28
@@ -491,7 +491,7 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to expose `Problem` entity schema.
+- Bump `@jupiterone/data-model` to expose `Problem` entity schema.
 
 ## 6.11.1 - 2021-07-23
 
@@ -513,7 +513,7 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Bump `@keystone-labs/data-model` to incorporate `RelationshipClass.PUBLISHED`
+- Bump `@jupiterone/data-model` to incorporate `RelationshipClass.PUBLISHED`
 
 ## 6.9.0 - 2021-07-06
 
@@ -553,7 +553,7 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.30.0`
+- Upgrade `@jupiterone/data-model@^0.30.0`
 
 ### Added
 
@@ -575,7 +575,7 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.28.0`
+- Upgrade `@jupiterone/data-model@^0.28.0`
 - Fix missing CLI `compare` sub command.
 - Fix `compare` relationship key tracking.
 - Ignore metadata graph object properties in `compare`.
@@ -584,26 +584,26 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.27.0`
+- Upgrade `@jupiterone/data-model@^0.27.0`
 
 ## 6.4.0 - 2021-06-03
 
 ### Changed
 
-- Add `compare` method to `@keystone-labs/integration-sdk-cli` which is used to
+- Add `compare` method to `@jupiterone/integration-sdk-cli` which is used to
   diff data sets downloaded from JupiterOne.
 
 ## 6.3.0 - 2021-05-25
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.24.0`
+- Upgrade `@jupiterone/data-model@^0.24.0`
 
 ## 6.2.1 - 2021-05-24
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.22.2`
+- Upgrade `@jupiterone/data-model@^0.22.2`
 
 ## 6.2.0 - 2021-05-21
 
@@ -617,13 +617,13 @@ of the support.jupiterone.io site.
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.22.1`
+- Upgrade `@jupiterone/data-model@^0.22.1`
 
 ## 6.0.1 - 2021-05-10
 
 ### Changed
 
-- Upgrade `@keystone-labs/data-model@^0.22.0`
+- Upgrade `@jupiterone/data-model@^0.22.0`
 
 ## 6.0.0 - 2021-04-19
 
@@ -652,7 +652,7 @@ of the support.jupiterone.io site.
 
 ## 5.11.0 - 2021-03-16
 
-- Upgrade `@keystone-labs/data-model@^0.18.0`
+- Upgrade `@jupiterone/data-model@^0.18.0`
 
 ## 5.10.0 - 2021-03-05
 
@@ -697,7 +697,7 @@ getData: <T>(key: string) => Promise<T | undefined>;
 
 ### Changed
 
-- Updated packages in `@keystone-labs/integration-sdk-core`
+- Updated packages in `@jupiterone/integration-sdk-core`
 
 ## 5.7.0 - 2021-02-15
 
@@ -923,7 +923,7 @@ getData: <T>(key: string) => Promise<T | undefined>;
 
 ## 4.0.1 - 2020-10-30
 
-- Upgrade `@keystone-labs/data-model@^0.15.0`
+- Upgrade `@jupiterone/data-model@^0.15.0`
 
 ## 4.0.0 - 2020-10-29
 
@@ -962,7 +962,7 @@ getData: <T>(key: string) => Promise<T | undefined>;
 
 ### Changed
 
-- Update `@keystone-labs/data-model`
+- Update `@jupiterone/data-model`
 
 ### Fixed
 
@@ -973,7 +973,7 @@ getData: <T>(key: string) => Promise<T | undefined>;
 
 ### Changed
 
-- Updated `@keystone-labs/data-model` to version 0.13.0.
+- Updated `@jupiterone/data-model` to version 0.13.0.
 
 ## 3.4.0 - 2020-10-01
 
@@ -983,7 +983,7 @@ getData: <T>(key: string) => Promise<T | undefined>;
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.12.0`
+- Upgrade to `@jupiterone/data-model@0.12.0`
 - `Entity.id` is now `string | string[]` in the `data-model` (see
   [PR](https://github.com/JupiterOne/data-model/pull/44)). Integrations may
   enrich existing entities through mapped relationship `targetEntity.id` values.
@@ -1019,7 +1019,7 @@ getData: <T>(key: string) => Promise<T | undefined>;
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.9.0`
+- Upgrade to `@jupiterone/data-model@0.9.0`
 
 ## 3.0.1 - 2020-08-26
 
@@ -1046,13 +1046,13 @@ const entity = await jobState.findEntity('entity-key-here');
 ```
 
 - [#303](https://github.com/JupiterOne/sdk/issues/303) Export
-  `RelationshipClass` from the `@keystone-labs/data-model` inside of
-  `@keystone-labs/integration-sdk-core`.
+  `RelationshipClass` from the `@jupiterone/data-model` inside of
+  `@jupiterone/integration-sdk-core`.
 
 Usage:
 
 ```typescript
-import { RelationshipClass } from '@keystone-labs/integration-sdk-core';
+import { RelationshipClass } from '@jupiterone/integration-sdk-core';
 ```
 
 ### Changed
@@ -1062,7 +1062,7 @@ import { RelationshipClass } from '@keystone-labs/integration-sdk-core';
   which contain metadata used to generate documentation.
 
 - **BREAKING** [#285](https://github.com/JupiterOne/sdk/issues/285) - Require a
-  `RelationshipClass` from `@keystone-labs/data-model` to be specified in
+  `RelationshipClass` from `@jupiterone/data-model` to be specified in
   relationship creation functions.
 
 Example:
@@ -1071,7 +1071,7 @@ Example:
 import {
   createDirectRelationship,
   RelationshipClass
-} from '@keystone-labs/integration-sdk-core';
+} from '@jupiterone/integration-sdk-core';
 
 createDirectRelationship({
   _class: RelationshipClass.HAS,
@@ -1099,7 +1099,7 @@ createDirectRelationship({
 
 ### Changed
 
-- Updated `@keystone-labs/data-model` to latest version (`0.8.1`).
+- Updated `@jupiterone/data-model` to latest version (`0.8.1`).
 
 ## 2.10.1 - 2020-08-18
 
@@ -1258,7 +1258,7 @@ export const invocationConfig: IntegrationInvocationConfig<IntegrationConfig> = 
 
 ### Changed
 
-- Updated `@keystone-labs/data-model` to latest version (`0.7.1`).
+- Updated `@jupiterone/data-model` to latest version (`0.7.1`).
 
 ### Fixed
 
@@ -1303,7 +1303,7 @@ export const invocationConfig: IntegrationInvocationConfig<IntegrationConfig> = 
 
 - Remove the need for the `JUPITERONE_DISABLE_EVENT_LOGGING` environment
   variable.
-- Removed `ApiClient` type from the `@keystone-labs/integration-sdk-core` package.
+- Removed `ApiClient` type from the `@jupiterone/integration-sdk-core` package.
   Also removed the dependency on `axios` from the package as well.
 - Removed `registerSynchronizationContext` function from the `IntegrationLogger`
 
@@ -1383,7 +1383,7 @@ export const invocationConfig: IntegrationInvocationConfig<IntegrationConfig> = 
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.6.4`
+- Upgrade to `@jupiterone/data-model@0.6.4`
 
 ## Pre 1.0.0
 
@@ -1391,10 +1391,10 @@ Prior to the `1.0.0` release, all integration SDK functionality was exposed by
 the `@jupiterone/integration-sdk` package. That package has now been split up
 into the following packages:
 
-- `@keystone-labs/integration-sdk-core`
+- `@jupiterone/integration-sdk-core`
 - `@jupiterone/integration-sdk-runtime`
 - `@jupiterone/integration-sdk-testing`
-- `@keystone-labs/integration-sdk-cli`
+- `@jupiterone/integration-sdk-cli`
 
 To view the changes that went into `@jupiterone/integration-sdk`, please see
 [LEGACY_SDK_CHANGELOG.md](./LEGACY_SDK_CHANGELOG.md).

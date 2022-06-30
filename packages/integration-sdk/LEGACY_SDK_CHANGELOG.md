@@ -35,7 +35,7 @@ and this project adheres to
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.6.4`
+- Upgrade to `@jupiterone/data-model@0.6.4`
 
 ## 3.1.0 - 2020-06-01
 
@@ -105,7 +105,7 @@ to adopt this version with no changes necessary.
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.6.0`
+- Upgrade to `@jupiterone/data-model@0.6.0`
 
 - `assignTags` was `trim()`ing twice, once is sufficient.
 
@@ -130,13 +130,13 @@ to adopt this version with no changes necessary.
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.5.2`
+- Upgrade to `@jupiterone/data-model@0.5.2`
 
 ## 2.1.1 - 2020-05-20
 
 ### Changed
 
-- Upgrade to `@keystone-labs/data-model@0.5.0`
+- Upgrade to `@jupiterone/data-model@0.5.0`
 
 ## 2.1.0 - 2020-05-20
 
@@ -208,7 +208,7 @@ to adopt this version with no changes necessary.
 
 ### Changed
 
-- Upgraded to `@keystone-labs/data-model@0.4.1`
+- Upgraded to `@jupiterone/data-model@0.4.1`
 
 ## 1.1.2 - 2020-05-15
 
@@ -371,7 +371,7 @@ to adopt this version with no changes necessary.
 
 ### Added
 
-- Updated `@keystone-labs/data-model@0.3.1`
+- Updated `@jupiterone/data-model@0.3.1`
 
 ## 0.11.0 2020-04-24
 
