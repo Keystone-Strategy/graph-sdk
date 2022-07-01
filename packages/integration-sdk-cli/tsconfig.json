@@ -1,23 +1,7 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
-    "target": "es2018",
-    "lib": ["es2018", "DOM"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "pretty": true,
-    "esModuleInterop": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "allowJs": false,
-    "outDir": "dist",
+    "outDir": "dist"
   },
-  "exclude": ["**/dist/*"],
-  "references": [
-    { "path": "../integration-sdk-core" },
-    { "path": "../integration-sdk-runtime" }
-  ]
+  "exclude": ["**/dist/*"]
 }

@@ -1,6 +1,6 @@
 import { createCommand } from 'commander';
 import fs from 'fs';
-import { diffString } from 'json-diff';
+// import { diffString } from 'json-diff';
 import path from 'path';
 
 // declare module 'json-diff' {
@@ -147,7 +147,7 @@ function diffEntities(
   }
 
   console.log('--- ENTITY DIFF ---');
-  console.log(diffString(oldEntities, newEntities, undefined, { keysOnly }));
+  // console.log(diffString(oldEntities, newEntities, undefined, { keysOnly }));
 }
 
 interface DiffableRelationship {
@@ -196,7 +196,7 @@ function diffRelationships(
   }
 
   console.log('--- RELATIONSHIP DIFF ---');
-  console.log(
-    diffString(oldRelationships, newRelationships, undefined, { keysOnly }),
-  );
+  // console.log(
+  //   diffString(oldRelationships, newRelationships, undefined, { keysOnly }),
+  // );
 }
