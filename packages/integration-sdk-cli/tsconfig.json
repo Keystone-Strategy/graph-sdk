@@ -1,7 +1,19 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "composite": true,
+    "target": "es2018",
+    "lib": ["es2018", "DOM"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "pretty": true,
+    "esModuleInterop": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "allowJs": false,
+    "outDir": "dist",
   },
   "exclude": ["**/dist/*"],
   "references": [
