@@ -17,7 +17,7 @@ import {
   Relationship,
   StepResultStatus,
   StepStartStates,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import {
   createIntegrationLogger,

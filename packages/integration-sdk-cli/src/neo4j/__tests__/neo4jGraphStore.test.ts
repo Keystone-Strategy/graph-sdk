@@ -1,7 +1,7 @@
 import { mockDriver, mockSessionFromQuerySet, QuerySpec } from 'neo-forgery';
 import * as neo4j from 'neo4j-driver';
 import { Neo4jGraphStore } from '../neo4jGraphStore';
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 
 const testInstanceID = 'testInstanceID';
 const testEntityData: Entity[] = [

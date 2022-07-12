@@ -1,7 +1,7 @@
 import {
   PublishEventLevel,
   SynchronizationJob,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { createIntegrationLogger } from '../../logger';
 import { createApiClient } from '../../api';
 

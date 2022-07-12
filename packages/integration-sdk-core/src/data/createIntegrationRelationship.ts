@@ -8,17 +8,17 @@ import {
   TargetEntityProperties,
   TargetFilterKey,
 } from '../types';
-import { RelationshipClass } from '@jupiterone/data-model';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
 type DirectRelationshipOptions = {
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   from: Entity;
   to: Entity;
   properties?: AdditionalRelationshipProperties;
 };
 
 type DirectRelationshipLiteralOptions = {
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   fromType: string;
   fromKey: string;
   toType: string;
@@ -137,7 +137,7 @@ type AdditionalRelationshipProperties = {
 function createInvalidateRelationshipClassError(_class: string) {
   return new IntegrationError({
     code: 'INVALID_RELATIONSHIP_CLASS',
-    message: `Invalid relationship class "${_class}" specified. The relationship class must be listed in "@jupiterone/data-model". See here for a list of valid relationship classes: https://github.com/JupiterOne/data-model/blob/main/src/RelationshipClass.ts`,
+    message: `Invalid relationship class "${_class}" specified. The relationship class must be listed in "@keystone-labs/data-model". See here for a list of valid relationship classes: https://github.com/JupiterOne/data-model/blob/main/src/RelationshipClass.ts`,
   });
 }
 
@@ -153,8 +153,8 @@ function isValidDataModelClass(_class: string) {
 export function createDirectRelationship(
   options: DirectRelationshipOptions | DirectRelationshipLiteralOptions,
 ): ExplicitRelationship {
-  const { _class } = options;
-  const normalizedClass = _class.toUpperCase();
+  const { _type } = options;
+  const normalizedClass = _type.toUpperCase();
 
   if (!isValidDataModelClass(normalizedClass)) {
     throw createInvalidateRelationshipClassError(normalizedClass);
@@ -164,7 +164,7 @@ export function createDirectRelationship(
     return createRelationship(options);
   } else {
     return createRelationship({
-      _class: options._class,
+      _type,
       fromType: options.from._type,
       fromKey: options.from._key,
       toType: options.to._type,
@@ -251,22 +251,20 @@ function createMappedRelationshipLiteral(
 }
 
 function createRelationship({
-  _class,
+  _type,
   fromType,
   fromKey,
   toType,
   toKey,
   properties,
 }: DirectRelationshipLiteralOptions): ExplicitRelationship {
-  const relationshipClass = _class.toUpperCase();
-  const _type = generateRelationshipType(_class, fromType, toType);
   return {
-    _key: `${fromKey}|${_class.toLowerCase()}|${toKey}`,
+    _key: `${fromKey}|${_type.toLowerCase()}|${toKey}`,
     _type,
-    _class: relationshipClass,
     _fromEntityKey: fromKey,
     _toEntityKey: toKey,
-    displayName: relationshipClass,
+    fromType,
+    toType,
     ...properties,
   };
 }

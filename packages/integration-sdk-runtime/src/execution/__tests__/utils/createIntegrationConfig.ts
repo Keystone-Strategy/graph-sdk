@@ -3,7 +3,7 @@ import {
   IntegrationInvocationConfig,
   IntegrationInstanceConfig,
   IntegrationInstance,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { LOCAL_INTEGRATION_INSTANCE } from '../..';
 import { createIntegrationLogger } from '../../..';
 import { InstanceConfigurationData } from '../executeIntegration.test';

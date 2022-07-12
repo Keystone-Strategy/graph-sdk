@@ -2,7 +2,7 @@ import { Polly } from '@pollyjs/core';
 import {
   SynchronizationJob,
   SynchronizationJobStatus,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 interface SetupOptions {
   baseUrl: string;

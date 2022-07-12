@@ -1,5 +1,5 @@
-import { IntegrationExecutionConfig } from '@jupiterone/integration-sdk-core';
-import { buildStepDependencyGraph } from '@jupiterone/integration-sdk-runtime';
+import { IntegrationExecutionConfig } from '@keystone-labs/integration-sdk-core';
+import { buildStepDependencyGraph } from '@keystone-labs/integration-sdk-runtime';
 import { StepTestConfig } from './config';
 import {
   createMockStepExecutionContext,

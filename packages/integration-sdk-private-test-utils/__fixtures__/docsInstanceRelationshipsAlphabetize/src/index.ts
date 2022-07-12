@@ -2,7 +2,7 @@ import fetchAccountsStep from './steps/fetchAccounts';
 import {
   IntegrationInvocationConfig,
   IntegrationInstanceConfig,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export const invocationConfig: IntegrationInvocationConfig<IntegrationInstanceConfig> =
   {

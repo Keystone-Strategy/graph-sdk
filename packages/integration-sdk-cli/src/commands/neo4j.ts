@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 
 import * as log from '../log';
-import { uploadToNeo4j, wipeNeo4jByID, wipeAllNeo4j } from '../neo4j';
+import { uploadToNeo4j, wipeNeo4j } from '../neo4j';
 
 export function neo4j() {
   dotenvExpand(dotenv.config());
@@ -19,14 +19,17 @@ export function neo4j() {
     .command('push')
     .description('upload collected entities and relationships to local Neo4j')
     .option(
+      '-p, --person <string>',
+      'person'
+    )
+    .option(
+      '-y, --year <string>',
+      'year'
+    )
+    .option(
       '-d, --data-dir <directory>',
       'path to collected entities and relationships',
       path.resolve(process.cwd(), '.j1-integration'),
-    )
-    .option(
-      '-i, --integration-instance-id <id>',
-      '_integrationInstanceId assigned to uploaded entities',
-      'defaultLocalInstanceID',
     )
     .action(async (options) => {
       log.info(`Beginning data upload to local neo4j`);
@@ -35,34 +38,22 @@ export function neo4j() {
       const finalDir = path.resolve(process.cwd(), options.dataDir);
       process.env.JUPITERONE_INTEGRATION_STORAGE_DIRECTORY = finalDir;
 
+      const person = options.person
+      const year = options.year
+
       await uploadToNeo4j({
         pathToData: finalDir,
-        integrationInstanceID: options.integrationInstanceId,
+        person,
+        year
       });
       log.info(`Data uploaded to local neo4j`);
     });
 
   neo4jCommand
     .command('wipe')
-    .description(
-      'wipe entities and relationships for a given integrationInstanceID in the Neo4j database',
-    )
-    .option(
-      '-i, --integration-instance-id <id>',
-      '_integrationInstanceId assigned to uploaded entities',
-      'defaultLocalInstanceID',
-    )
-    .action(async (options) => {
-      await wipeNeo4jByID({
-        integrationInstanceID: options.integrationInstanceId,
-      });
-    });
-
-  neo4jCommand
-    .command('wipe-all')
     .description('wipe all entities and relationships in the Neo4j database')
-    .action(async (options) => {
-      await wipeAllNeo4j({});
+    .action(async () => {
+      await wipeNeo4j({});
     });
 
   return neo4jCommand;

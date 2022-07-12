@@ -4,7 +4,7 @@ import path from 'path';
 import {
   IntegrationError,
   IntegrationInvocationConfig,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import * as log from './log';
 
@@ -22,7 +22,7 @@ export class IntegrationInvocationConfigLoadError extends IntegrationError {
  */
 export async function loadConfig(
   projectSourceDirectory: string = path.join(process.cwd(), 'src'),
-): Promise<IntegrationInvocationConfig> {
+): Promise<any> {
   if (await isTypescriptPresent(projectSourceDirectory)) {
     log.debug('TypeScript files detected. Registering ts-node.');
     registerTypescript();

@@ -1,7 +1,7 @@
 import {
   RelationshipClass,
   IntegrationEntitySchema,
-} from '@jupiterone/data-model';
+} from '@keystone-labs/data-model';
 
 import {
   ExecutionContext,
@@ -103,12 +103,12 @@ export interface StepGraphObjectMetadata {
 
   /**
    * An optional extension to the JSON schemas defined by the `_class` of this entity
-   * in the @jupiterone/data-model.
+   * in the @keystone-labs/data-model.
    *
    * Extensions defined by this schema are in addition to the schemas referenced by the
    * `_class` values of the entity. These should be considered unique properties for
    * this integration. Ask yourself, should a property here be considered for promotion
-   * to the @jupiterone/data-model to benefit normalization of all integrations producing
+   * to the @keystone-labs/data-model to benefit normalization of all integrations producing
    * this class of entity?
    */
   schema?: GraphObjectSchema;
@@ -141,11 +141,11 @@ export interface StepEntityMetadata extends StepGraphObjectMetadata {
    * "S3 Bucket"
    */
   resourceName: string;
-  _class: string | string[];
+  _type: string;
 }
 
 export interface StepRelationshipMetadata extends StepGraphObjectMetadata {
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   sourceType: string;
   targetType: string;
 }
@@ -153,7 +153,7 @@ export interface StepRelationshipMetadata extends StepGraphObjectMetadata {
 export interface StepMappedRelationshipMetadata
   extends StepGraphObjectMetadata {
   sourceType: string;
-  _class: RelationshipClass;
+  _type: RelationshipClass;
   targetType: string;
   direction: RelationshipDirection;
 }

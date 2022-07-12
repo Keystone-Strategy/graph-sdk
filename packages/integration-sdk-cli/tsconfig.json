@@ -3,10 +3,5 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "exclude": ["**/dist/*"],
-  "references": [
-    { "path": "../integration-sdk-core" },
-    { "path": "../integration-sdk-runtime" },
-    { "path": "../integration-sdk-private-test-utils" }
-  ]
+  "exclude": ["**/dist/*"]
 }

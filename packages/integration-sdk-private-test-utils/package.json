@@ -9,13 +9,13 @@
   "author": "JupiterOne <dev@jupiterone.io>",
   "license": "MPL-2.0",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "scripts": {
     "build:dist": "tsc -p tsconfig.json --declaration"
   },
   "dependencies": {
-    "@jupiterone/integration-sdk-core": "^8.4.5",
+    "@keystone-labs/integration-sdk-core": "8.4.5-k-1.0.0",
     "lodash": "^4.17.15",
     "uuid": "^7.0.3"
   },

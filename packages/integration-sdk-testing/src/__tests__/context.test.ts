@@ -3,12 +3,12 @@ import {
   Relationship,
   IntegrationStep,
   IntegrationInstanceConfigFieldMap,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import {
   LOCAL_INTEGRATION_INSTANCE,
   IntegrationLogger,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import {
   loadProjectStructure,

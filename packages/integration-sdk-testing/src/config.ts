@@ -1,7 +1,7 @@
 import {
   IntegrationInstanceConfig,
   IntegrationInvocationConfig,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export interface StepTestConfig<
   TInvocationConfig extends IntegrationInvocationConfig = IntegrationInvocationConfig,

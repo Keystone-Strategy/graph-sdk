@@ -1,4 +1,4 @@
-import { IntegrationError } from '@jupiterone/integration-sdk-core';
+import { IntegrationError } from '@keystone-labs/integration-sdk-core';
 import PQueue from 'p-queue/dist';
 import { FlushedGraphObjectData } from '../storage/types';
 import {

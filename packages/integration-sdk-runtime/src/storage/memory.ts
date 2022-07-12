@@ -6,7 +6,7 @@ import {
   IntegrationError,
   IntegrationMissingKeyError,
   Relationship,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export interface GraphObjectMetadata {
   stepId: string;

@@ -4,7 +4,7 @@ import {
   StepStartStates,
   StepStartStateUnknownStepIdsError,
   UnaccountedStepStartStatesError,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export function validateStepStartStates<
   TStepExecutionContext extends StepExecutionContext,

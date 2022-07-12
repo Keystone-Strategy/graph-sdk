@@ -6,7 +6,7 @@ import {
   IntegrationStep,
   Relationship,
   RelationshipClass,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { v4 as uuid } from 'uuid';
 import { executeStepWithDependencies } from '../executeStepWithDependencies';
 

@@ -12,7 +12,7 @@ import { readFileFromPath, getCsvAssetsDirectory } from '../fileSystem';
 import {
   createApiClient,
   getApiBaseUrl,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 import { sanitizeContent } from '../export/util';
 import { pause } from '../pause';
 

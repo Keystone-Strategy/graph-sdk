@@ -4,10 +4,10 @@ import fs from 'fs-extra';
 
 import {
   executeIntegrationLocally,
-  FileSystemGraphObjectStore,
+  CloudServiceCSVGraphObjectStore,
   getRootStorageDirectory,
   prepareLocalStepCollection,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import { loadConfig } from '../config';
 import * as log from '../log';
@@ -78,8 +78,7 @@ export function collect() {
       );
       log.info('\nConfiguration loaded! Running integration...\n');
 
-      const graphObjectStore = new FileSystemGraphObjectStore({
-        prettifyFiles: true,
+      const graphObjectStore = new CloudServiceCSVGraphObjectStore({
         integrationSteps: config.integrationSteps,
       });
 

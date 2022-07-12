@@ -1,5 +1,5 @@
 import chunk from 'lodash/chunk';
-import { ApiClient } from '@jupiterone/integration-sdk-runtime';
+import { ApiClient } from '@keystone-labs/integration-sdk-runtime';
 
 enum QueryLanguageErrorCode {
   PARSER_ERROR = 'PARSER_ERROR',

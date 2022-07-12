@@ -3,8 +3,8 @@ import {
   StepExecutionContext,
   Step,
   RelationshipDirection,
-} from '@jupiterone/integration-sdk-core';
-import { RelationshipClass } from '@jupiterone/data-model';
+} from '@keystone-labs/integration-sdk-core';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
 const fetchGroupsStep: Step<StepExecutionContext> = {
   id: 'fetch-groups',

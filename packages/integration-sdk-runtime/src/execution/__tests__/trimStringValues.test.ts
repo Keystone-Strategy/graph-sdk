@@ -1,4 +1,4 @@
-import { IntegrationInstance } from '@jupiterone/integration-sdk-core';
+import { IntegrationInstance } from '@keystone-labs/integration-sdk-core';
 import { trimStringValues } from '../utils/trimStringValues';
 
 describe('trimStringValues', () => {

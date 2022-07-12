@@ -2,7 +2,7 @@ import {
   RelationshipClass,
   RelationshipDirection,
   StepGraphObjectMetadataProperties,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import {
   getNodesAndEdgesFromStepMetadata,
   MAPPED_RELATIONSHIP_OPTIONS,

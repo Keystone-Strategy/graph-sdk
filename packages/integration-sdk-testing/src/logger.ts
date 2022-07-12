@@ -1,4 +1,4 @@
-import { IntegrationLogger } from '@jupiterone/integration-sdk-runtime';
+import { IntegrationLogger } from '@keystone-labs/integration-sdk-runtime';
 
 import Logger, { RingBuffer } from 'bunyan';
 

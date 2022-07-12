@@ -9,7 +9,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import { FileSystemGraphObjectStore } from '../../storage';
 import { vol } from 'memfs';
-import { Entity } from '@jupiterone/integration-sdk-core';
+import { Entity } from '@keystone-labs/integration-sdk-core';
 import {
   createTestEntity,
   createTestRelationship,

@@ -1,10 +1,10 @@
 import {
   createApiClient,
   getApiBaseUrl,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 import _ from 'lodash';
 import { v4 as uuid } from 'uuid';
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 
 import { ensureDirectoryExists, writeFileToPath } from '../fileSystem';
 import path from 'path';

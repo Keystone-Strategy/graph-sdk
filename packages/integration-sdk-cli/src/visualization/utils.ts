@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Entity } from '@jupiterone/integration-sdk-core';
+import { Entity } from '@keystone-labs/integration-sdk-core';
 
 export type NodeEntity = Partial<Entity> & { nodeId: string };
 

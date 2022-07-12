@@ -1,7 +1,7 @@
 import {
   SynchronizationJobStatus,
   SynchronizationJob,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export function generateSynchronizationJob(): SynchronizationJob {
   return {

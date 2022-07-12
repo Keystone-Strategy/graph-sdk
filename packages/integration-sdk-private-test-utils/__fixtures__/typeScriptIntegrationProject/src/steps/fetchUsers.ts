@@ -4,8 +4,8 @@ import {
   createDirectRelationship,
   Step,
   StepExecutionContext,
-} from '@jupiterone/integration-sdk-core';
-import { RelationshipClass } from '@jupiterone/data-model';
+} from '@keystone-labs/integration-sdk-core';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
 const fetchUsersStep: Step<StepExecutionContext> = {
   id: 'fetch-users',

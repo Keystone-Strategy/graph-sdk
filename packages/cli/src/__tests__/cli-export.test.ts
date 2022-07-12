@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { mocked } from 'ts-jest/utils';
-import * as runtime from '@jupiterone/integration-sdk-runtime';
+import * as runtime from '@keystone-labs/integration-sdk-runtime';
 
 import { createCli } from '..';
 import { TEST_API_KEY, TEST_ACCOUNT } from './utils';
@@ -8,7 +8,7 @@ import * as log from '../log';
 import { vol } from 'memfs';
 import { createEntity, createRelationship } from '../export/__tests__/utils';
 
-jest.mock('@jupiterone/integration-sdk-runtime');
+jest.mock('@keystone-labs/integration-sdk-runtime');
 jest.mock('axios');
 jest.mock('ora');
 jest.mock('fs');

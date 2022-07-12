@@ -1,4 +1,4 @@
-import { Entity } from '@jupiterone/integration-sdk-core';
+import { Entity } from '@keystone-labs/integration-sdk-core';
 
 export function createEntity({
   type,

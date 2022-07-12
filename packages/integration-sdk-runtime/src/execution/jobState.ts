@@ -4,7 +4,7 @@ import {
   JobState,
   KeyNormalizationFunction,
   Relationship,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { GraphObjectStore } from '../storage';
 import { StepGraphObjectDataUploader } from './uploader';

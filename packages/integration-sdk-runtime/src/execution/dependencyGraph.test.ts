@@ -1,7 +1,7 @@
 import {
   RelationshipClass,
   RelationshipDirection,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { getDeclaredTypesInStep } from './dependencyGraph';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function

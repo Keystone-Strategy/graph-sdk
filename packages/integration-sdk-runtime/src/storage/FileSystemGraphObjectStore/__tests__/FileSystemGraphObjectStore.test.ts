@@ -24,8 +24,8 @@ import {
   createIntegrationEntity,
   createDirectRelationship,
   IntegrationStep,
-} from '@jupiterone/integration-sdk-core';
-import { RelationshipClass } from '@jupiterone/data-model';
+} from '@keystone-labs/integration-sdk-core';
+import { RelationshipClass } from '@keystone-labs/data-model';
 import { FlushedGraphObjectData } from '../../types';
 import sortBy from 'lodash/sortBy';
 
