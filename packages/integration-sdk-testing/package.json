@@ -23,8 +23,8 @@
     "prepack": "yarn build:dist"
   },
   "dependencies": {
-    "@keystone-labs/integration-sdk-core": "8.4.5-k-1.0.0",
-    "@keystone-labs/integration-sdk-runtime": "8.4.5-k-1.0.0",
+    "@keystone-labs/integration-sdk-core": "1.0.0",
+    "@keystone-labs/integration-sdk-runtime": "1.0.0",
     "@pollyjs/adapter-node-http": "^5.1.1",
     "@pollyjs/core": "^5.1.1",
     "@pollyjs/persister-fs": "^5.1.1",
