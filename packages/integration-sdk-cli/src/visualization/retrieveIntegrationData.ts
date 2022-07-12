@@ -2,8 +2,8 @@ import {
   Entity,
   ExplicitRelationship,
   MappedRelationship,
-} from '@jupiterone/integration-sdk-core';
-import { readJsonFromPath } from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-core';
+import { readJsonFromPath } from '@keystone-labs/integration-sdk-runtime';
 
 import { IntegrationData } from './types/IntegrationData';
 

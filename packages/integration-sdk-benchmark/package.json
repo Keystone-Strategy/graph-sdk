@@ -8,15 +8,15 @@
   "author": "JupiterOne <dev@jupiterone.io>",
   "license": "MPL-2.0",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "scripts": {
     "prebenchmark": "rm -rf .j1-integration",
     "benchmark": "node ./src/index.js"
   },
   "dependencies": {
-    "@jupiterone/integration-sdk-core": "^8.4.5",
-    "@jupiterone/integration-sdk-runtime": "^8.4.5",
+    "@keystone-labs/integration-sdk-core": "8.4.5-k-1.0.0",
+    "@keystone-labs/integration-sdk-runtime": "8.4.5-k-1.0.0",
     "benchmark": "^2.1.4"
   }
 }

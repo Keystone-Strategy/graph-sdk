@@ -1,4 +1,4 @@
-import { Step } from '@jupiterone/integration-sdk-core';
+import { Step } from '@keystone-labs/integration-sdk-core';
 
 export const DEFAULT_DEPENDENCY_GRAPH_IDENTIFIER = '__defaultDependencyGraph';
 

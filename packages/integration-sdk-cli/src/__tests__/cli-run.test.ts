@@ -13,7 +13,7 @@ import {
 import {
   StepResultStatus,
   SynchronizationJobStatus,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import * as log from '../log';
 

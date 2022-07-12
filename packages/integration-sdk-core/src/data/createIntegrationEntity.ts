@@ -2,7 +2,7 @@ import {
   getSchema,
   IntegrationEntitySchema,
   validateEntityWithSchema,
-} from '@jupiterone/data-model';
+} from '@keystone-labs/data-model';
 
 import { IntegrationError } from '../errors';
 import { Entity } from '../types';

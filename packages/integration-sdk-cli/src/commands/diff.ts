@@ -1,24 +1,24 @@
 import { createCommand } from 'commander';
 import fs from 'fs';
-import { diffString } from 'json-diff';
+// import { diffString } from 'json-diff';
 import path from 'path';
 
-declare module 'json-diff' {
-  /**
-   * The exported types from @types/json-diff exclude an optional fourth parameter, `diffOptions`,
-   * that allows the user to pass the `keysOnly` flag. Sadly, based on testing, it seems that
-   * `keysOnly` does not work under certain circumstances, particularly with diffed arrays.
-   *
-   * Method signature as exported from @types/json-diff:
-   *   function diffString(obj1: unknown, obj2: unknown, colorizeOptions?: ColorizeOptions): string;
-   */
-  function diffString(
-    obj1: unknown,
-    obj2: unknown,
-    colorizeOptions?: { color?: boolean },
-    diffOptions?: { keysOnly?: boolean },
-  ): string;
-}
+// declare module 'json-diff' {
+/**
+ * The exported types from @types/json-diff exclude an optional fourth parameter, `diffOptions`,
+ * that allows the user to pass the `keysOnly` flag. Sadly, based on testing, it seems that
+ * `keysOnly` does not work under certain circumstances, particularly with diffed arrays.
+ *
+ * Method signature as exported from @types/json-diff:
+ *   function diffString(obj1: unknown, obj2: unknown, colorizeOptions?: ColorizeOptions): string;
+ */
+//   function diffString(
+//     obj1: unknown,
+//     obj2: unknown,
+//     colorizeOptions?: { color?: boolean },
+//     diffOptions?: { keysOnly?: boolean },
+//   ): string;
+// }
 
 export function diff() {
   return createCommand('diff')
@@ -147,7 +147,7 @@ function diffEntities(
   }
 
   console.log('--- ENTITY DIFF ---');
-  console.log(diffString(oldEntities, newEntities, undefined, { keysOnly }));
+  // console.log(diffString(oldEntities, newEntities, undefined, { keysOnly }));
 }
 
 interface DiffableRelationship {
@@ -196,7 +196,7 @@ function diffRelationships(
   }
 
   console.log('--- RELATIONSHIP DIFF ---');
-  console.log(
-    diffString(oldRelationships, newRelationships, undefined, { keysOnly }),
-  );
+  // console.log(
+  //   diffString(oldRelationships, newRelationships, undefined, { keysOnly }),
+  // );
 }

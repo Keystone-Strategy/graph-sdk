@@ -13,7 +13,7 @@ import * as zlib from 'zlib';
 import { promisify } from 'util';
 import { FlushedGraphObjectData } from './storage/types';
 import { readGraphObjectFile } from './storage/FileSystemGraphObjectStore/indices';
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 
 const brotliCompress = promisify(zlib.brotliCompress);
 const brotliDecompress = promisify(zlib.brotliDecompress);

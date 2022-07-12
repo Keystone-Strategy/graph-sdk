@@ -1,8 +1,8 @@
 import {
   Entity,
   createDirectRelationship,
-} from '@jupiterone/integration-sdk-core';
-import { RelationshipClass } from '@jupiterone/data-model';
+} from '@keystone-labs/integration-sdk-core';
+import { RelationshipClass } from '@keystone-labs/data-model';
 
 interface CreateRelationshipParams {
   _class?: RelationshipClass;

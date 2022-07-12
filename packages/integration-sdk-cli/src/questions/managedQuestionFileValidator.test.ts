@@ -1,7 +1,7 @@
 import {
   createApiClient,
   getApiBaseUrl,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 import path from 'path';
 import { validateManagedQuestionFile } from './managedQuestionFileValidator';
 

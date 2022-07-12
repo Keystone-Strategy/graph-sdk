@@ -5,7 +5,7 @@ import noop from 'lodash/noop';
 import {
   PartialDatasets,
   SynchronizationJobStatus,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import {
   loadProjectStructure,
   restoreProjectStructure,

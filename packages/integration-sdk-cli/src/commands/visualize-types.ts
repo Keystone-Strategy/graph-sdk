@@ -9,7 +9,7 @@ import {
   StepGraphObjectMetadataProperties,
   StepMappedRelationshipMetadata,
   StepRelationshipMetadata,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import * as log from '../log';
 import { generateVisHTML } from '../utils/generateVisHTML';

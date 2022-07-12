@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { IntegrationError } from '@jupiterone/integration-sdk-core';
+import { IntegrationError } from '@keystone-labs/integration-sdk-core';
 import { SynchronizationApiErrorResponse } from './types';
 
 export function synchronizationApiError(

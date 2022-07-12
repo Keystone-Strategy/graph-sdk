@@ -2,7 +2,7 @@ import globby from 'globby';
 import upath from 'upath';
 import { Edge } from 'vis';
 
-import { writeFileToPath } from '@jupiterone/integration-sdk-runtime';
+import { writeFileToPath } from '@keystone-labs/integration-sdk-runtime';
 
 import * as log from '../log';
 import { generateVisHTML } from '../utils/generateVisHTML';

@@ -1,4 +1,4 @@
-import * as dataModel from '@jupiterone/data-model';
+import * as dataModel from '@keystone-labs/data-model';
 import * as deepmerge from 'deepmerge';
 import {
   Entity,
@@ -12,11 +12,11 @@ import {
   Relationship,
   RelationshipClass,
   Step,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { SyncExpectationResult } from 'expect/build/types';
 import { getMatchers } from 'expect/build/jestMatchersObject';
 import { StepTestConfig } from './config';
-import { buildStepDependencyGraph } from '@jupiterone/integration-sdk-runtime';
+import { buildStepDependencyGraph } from '@keystone-labs/integration-sdk-runtime';
 import { filterGraphObjects } from './filterGraphObjects';
 
 declare global {
@@ -52,7 +52,7 @@ declare global {
       /**
        * Used to verify that a collection of Entities matches the _type, _class,
        * and schema defined for the collection, as well as any additional schema
-       * defined for the _class in the @jupiterone/data-model project
+       * defined for the _class in the @keystone-labs/data-model project
        *
        * @example
        * ```ts

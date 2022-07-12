@@ -1,7 +1,7 @@
 import {
   IntegrationStep,
   StepStartStates,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { validateStepStartStates } from '../validation';
 

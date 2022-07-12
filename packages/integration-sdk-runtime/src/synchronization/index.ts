@@ -7,7 +7,7 @@ import {
   Entity,
   Relationship,
   SynchronizationJob,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import { IntegrationLogger } from '../logger';
 
@@ -266,9 +266,12 @@ export async function uploadDataChunk<
 >({ logger, apiClient, jobId, type, batch }: UploadDataChunkParams<T, K>) {
   await retry(
     async () => {
-      await apiClient.post(`/persister/synchronization/jobs/${jobId}/${type}`, {
-        [type]: batch,
-      });
+      await apiClient.post(
+        `/persister/synchronization/jobs/${jobId}/${String(type)}`,
+        {
+          [type]: batch,
+        },
+      );
     },
     {
       maxAttempts: 5,

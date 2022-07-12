@@ -1,7 +1,7 @@
 import { RelationshipClass } from '../index';
 
 describe('#RelationshipClass', () => {
-  test('should export @jupiterone/data-model properties in the index', () => {
+  test('should export @keystone-labs/data-model properties in the index', () => {
     expect(
       Object.values(RelationshipClass).filter((v) => typeof v !== 'string')
         .length,

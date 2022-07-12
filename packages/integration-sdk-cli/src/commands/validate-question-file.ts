@@ -6,7 +6,7 @@ import {
   ApiClient,
   createApiClient,
   getApiBaseUrl,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 import * as path from 'path';
 
 interface ValidateQuestionFileCommandArgs extends TypesCommandArgs {

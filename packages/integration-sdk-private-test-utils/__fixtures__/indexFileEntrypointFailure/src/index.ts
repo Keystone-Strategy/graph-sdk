@@ -1,10 +1,10 @@
 import noop from 'lodash/noop';
-import { IntegrationInvocationConfig } from '@jupiterone/integration-sdk-core';
+import { IntegrationInvocationConfig } from '@keystone-labs/integration-sdk-core';
 
 import {
   IntegrationInstanceConfig,
   IntegrationStepExecutionContext,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export type IntegrationStepContext =
   IntegrationStepExecutionContext<IntegrationConfig>;

@@ -5,7 +5,7 @@ import {
   RelationshipDirection,
   RelationshipMapping,
   TargetEntityProperties,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { isMatch, pick } from 'lodash';
 import { getNodeIdFromEntity, NodeEntity, isNodeIdDuplicate } from './utils';
 

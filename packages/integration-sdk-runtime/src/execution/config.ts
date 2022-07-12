@@ -7,7 +7,7 @@ import {
   IntegrationInstanceConfig,
   IntegrationInstanceConfigField,
   IntegrationInstanceConfigFieldMap,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 const dotenvExpand = require('dotenv-expand');
 

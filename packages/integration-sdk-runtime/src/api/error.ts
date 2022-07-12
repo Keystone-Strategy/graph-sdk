@@ -1,4 +1,4 @@
-import { IntegrationError } from '@jupiterone/integration-sdk-core';
+import { IntegrationError } from '@keystone-labs/integration-sdk-core';
 
 export class IntegrationApiKeyRequiredError extends IntegrationError {
   constructor() {

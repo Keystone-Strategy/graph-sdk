@@ -3,12 +3,12 @@ import {
   JobState,
   Relationship,
   KeyNormalizationFunction,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import {
   DuplicateKeyTracker,
   MemoryDataStore,
   TypeTracker,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 import { v4 as uuid } from 'uuid';
 
 export interface CreateMockJobStateOptions {

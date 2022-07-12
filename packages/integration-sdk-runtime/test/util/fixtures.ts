@@ -2,7 +2,7 @@ import {
   ExecutionHistory,
   IntegrationInstance,
   IntegrationLogger,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export const LOCAL_INTEGRATION_INSTANCE: IntegrationInstance = {
   id: 'local-integration-instance',

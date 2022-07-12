@@ -1,6 +1,6 @@
 import { loadConfig } from '../config';
 import * as path from 'path';
-import { buildStepDependencyGraph } from '@jupiterone/integration-sdk-runtime';
+import { buildStepDependencyGraph } from '@keystone-labs/integration-sdk-runtime';
 import {
   IntegrationStepExecutionContext,
   Step,
@@ -8,7 +8,7 @@ import {
   StepEntityMetadata,
   StepRelationshipMetadata,
   StepMappedRelationshipMetadata,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 export interface TypesCommandArgs {
   projectPath: string;

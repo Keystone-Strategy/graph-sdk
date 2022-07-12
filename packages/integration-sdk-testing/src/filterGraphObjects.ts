@@ -1,4 +1,4 @@
-import { Entity, Relationship } from '@jupiterone/integration-sdk-core';
+import { Entity, Relationship } from '@keystone-labs/integration-sdk-core';
 
 export function filterGraphObjects<T = Entity | Relationship>(
   graphObjects: T[],

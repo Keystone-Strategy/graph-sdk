@@ -1,4 +1,4 @@
-import { IntegrationEvent } from '@jupiterone/integration-sdk-core';
+import { IntegrationEvent } from '@keystone-labs/integration-sdk-core';
 import { AxiosRequestConfig } from 'axios';
 import PromiseQueue from 'p-queue';
 

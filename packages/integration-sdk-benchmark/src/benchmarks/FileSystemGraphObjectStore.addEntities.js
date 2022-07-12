@@ -1,7 +1,7 @@
 const Benchmark = require('benchmark');
 const {
   FileSystemGraphObjectStore,
-} = require('@jupiterone/integration-sdk-runtime');
+} = require('@keystone-labs/integration-sdk-runtime');
 const { createMockEntities } = require('../util/entity');
 
 const suite = new Benchmark.Suite();

@@ -3,7 +3,7 @@ import {
   Relationship,
   GraphObjectIteratee,
   IntegrationError,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { readJsonFromPath, WalkDirectoryIterateeInput } from '../../fileSystem';
 
 import { buildIndexDirectoryPath } from './path';

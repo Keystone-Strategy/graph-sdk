@@ -17,7 +17,7 @@ import {
   Relationship,
   RelationshipClass,
   StepResultStatus,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import { InMemoryGraphObjectStore } from '@jupiterone/integration-sdk-private-test-utils';
 
 import * as integrationFileSystem from '../../fileSystem';

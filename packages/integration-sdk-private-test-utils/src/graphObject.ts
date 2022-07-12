@@ -1,4 +1,4 @@
-import { Entity, ExplicitRelationship } from '@jupiterone/integration-sdk-core';
+import { Entity, ExplicitRelationship } from '@keystone-labs/integration-sdk-core';
 import { v4 as uuid } from 'uuid';
 
 export function createTestEntity(partial?: Partial<Entity>): Entity {

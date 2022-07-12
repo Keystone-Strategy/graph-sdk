@@ -1,4 +1,3 @@
-
 import pMap from 'p-map';
 
 import S3 from 'aws-sdk/clients/s3';
@@ -13,19 +12,19 @@ import {
   GraphObjectIndexMetadata,
   GetIndexMetadataForGraphObjectTypeParams,
   IntegrationStep,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 
 import {
   iterateEntityTypeIndex,
   iterateRelationshipTypeIndex,
 } from './indices';
 import { InMemoryGraphObjectStore } from '../memory';
-import _ from 'lodash'
-import { Parser } from 'json2csv'
+import _ from 'lodash';
+import { Parser } from 'json2csv';
 import { buildPropertyParameters } from './neo4jUtilities';
 
-const s3Client = new S3({ region: "us-east-2" });
-const sqsClient = new SQS({ region: "us-east-2" })
+const s3Client = new S3({ region: 'us-east-2' });
+const sqsClient = new SQS({ region: 'us-east-2' });
 
 export interface CloudServiceCSVGraphObjectStoreParams {
   integrationSteps?: IntegrationStep[];
@@ -89,7 +88,10 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
     string,
     GraphObjectIndexMetadataMap
   >;
-  private readonly uniqueIdentifier = String(_.random(1, 99999)).padStart(5, '0')
+  private readonly uniqueIdentifier = String(_.random(1, 99999)).padStart(
+    5,
+    '0',
+  );
 
   constructor(params?: CloudServiceCSVGraphObjectStoreParams) {
     if (params?.integrationSteps) {
@@ -98,17 +100,11 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
     }
   }
 
-  async addEntities(
-    stepId: string,
-    newEntities: Entity[],
-  ) {
+  async addEntities(stepId: string, newEntities: Entity[]) {
     await this.localGraphObjectStore.addEntities(stepId, newEntities);
   }
 
-  async addRelationships(
-    stepId: string,
-    newRelationships: Relationship[],
-  ) {
+  async addRelationships(stepId: string, newRelationships: Relationship[]) {
     await this.localGraphObjectStore.addRelationships(stepId, newRelationships);
   }
 
@@ -120,7 +116,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async findEntity(_key: string | undefined): Promise<Entity | undefined> {
     if (!_key) return;
     const bufferedEntity = await this.localGraphObjectStore.findEntity(_key);
-    return bufferedEntity
+    return bufferedEntity;
   }
 
   async iterateEntities<T extends Entity = Entity>(
@@ -151,135 +147,147 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
     onEntitiesFlushed?: (entities: Entity[]) => Promise<void>,
     onRelationshipsFlushed?: (relationships: Relationship[]) => Promise<void>,
   ) {
-    await this.flushEntitiesToDisk(onEntitiesFlushed)
-    await this.flushRelationshipsToDisk(onRelationshipsFlushed)
+    await this.flushEntitiesToDisk(onEntitiesFlushed);
+    await this.flushRelationshipsToDisk(onRelationshipsFlushed);
   }
 
   async flushEntitiesToDisk(
     onEntitiesFlushed?: (entities: Entity[]) => Promise<void>,
   ) {
-      pMap(
-        this.localGraphObjectStore.collectEntitiesByStep(),
-        async ([stepId, entities]) => {
-          console.log('flushEntitiesToDisk', stepId)
-          const entitiesTypes = _.groupBy(entities, '_type')
-          for (const eTypeKey of Object.keys(entitiesTypes)) {
-            const eTypeArray = entitiesTypes[eTypeKey]
-      
-            const json2csvParser = new Parser();
-            const csv = json2csvParser.parse(eTypeArray.map(a => {
-              return buildPropertyParameters(a)
-            }));
-            
-            const buf = Buffer.from(csv, 'utf8');
+    pMap(
+      this.localGraphObjectStore.collectEntitiesByStep(),
+      async ([stepId, entities]) => {
+        console.log('flushEntitiesToDisk', stepId);
+        const entitiesTypes = _.groupBy(entities, '_type');
+        for (const eTypeKey of Object.keys(entitiesTypes)) {
+          const eTypeArray = entitiesTypes[eTypeKey];
 
-            const fileKey = `collect/${this.uniqueIdentifier}-${stepId}-ENTITY-${eTypeKey}.csv`
-            const r = await s3Client.putObject({
-              Bucket: process.env.S3_BUCKET,
+          const json2csvParser = new Parser();
+          const csv = json2csvParser.parse(
+            eTypeArray.map((a) => {
+              return buildPropertyParameters(a);
+            }),
+          );
+
+          const buf = Buffer.from(csv, 'utf8');
+
+          const fileKey = `collect/${this.uniqueIdentifier}-${stepId}-ENTITY-${eTypeKey}.csv`;
+          const r = await s3Client
+            .putObject({
+              Bucket: process.env.S3_BUCKET || '',
               Key: fileKey,
-              Body : buf
-            }).promise()
+              Body: buf,
+            })
+            .promise();
 
-            const eTag = r.ETag
-            if (!eTag) throw new Error('no etag')
-            
-            await sqsClient.sendMessage({
-              QueueUrl: process.env.SQS_QUEUE_URL,
+          const eTag = r.ETag;
+          if (!eTag) throw new Error('no etag');
+
+          await sqsClient
+            .sendMessage({
+              QueueUrl: process.env.SQS_QUEUE_URL || '',
               MessageBody: eTag,
               MessageAttributes: {
                 type: {
                   DataType: 'String',
-                  StringValue: "ENTITY"
+                  StringValue: 'ENTITY',
                 },
                 entityType: {
-                  DataType: "String",
-                  StringValue: eTypeKey
+                  DataType: 'String',
+                  StringValue: eTypeKey,
                 },
                 fileKey: {
-                  DataType: "String",
-                  StringValue: fileKey
-                }
-              }
-            }).promise();
-          }
+                  DataType: 'String',
+                  StringValue: fileKey,
+                },
+              },
+            })
+            .promise();
+        }
 
-          this.localGraphObjectStore.flushEntities(entities);
-          if (onEntitiesFlushed) await onEntitiesFlushed(entities);
-        },
+        this.localGraphObjectStore.flushEntities(entities);
+        if (onEntitiesFlushed) await onEntitiesFlushed(entities);
+      },
     );
   }
 
   async flushRelationshipsToDisk(
     onRelationshipsFlushed?: (relationships: Relationship[]) => Promise<void>,
   ) {
-      pMap(
-        this.localGraphObjectStore.collectRelationshipsByStep(),
-        async ([stepId, relationships]) => {
-          const relationshipTypes = _.groupBy(relationships, '_type')
-          for (const rTypeKey of Object.keys(relationshipTypes)) {
-            const rTypeArray = relationshipTypes[rTypeKey]
-      
-            const rFromType = _.groupBy(rTypeArray, 'fromType')    
-            for (const rFromTypeKey of Object.keys(rFromType)) {
-              const rFromTypeArray = rFromType[rFromTypeKey]
-              
-              const rToType = _.groupBy(rFromTypeArray, 'toType')
-              for(const rToTypeKey of Object.keys(rToType)) {
-                const rToTypeArray = rToType[rToTypeKey]
-            
-                const json2csvParser = new Parser();
-                const csv = json2csvParser.parse(rToTypeArray.map(a => {
-                  const sanitizedRelationship = buildPropertyParameters(a)
-                  return sanitizedRelationship
-                }));
-            
-                const buf = Buffer.from(csv, 'utf8');
+    pMap(
+      this.localGraphObjectStore.collectRelationshipsByStep(),
+      async ([stepId, relationships]) => {
+        const relationshipTypes = _.groupBy(relationships, '_type');
+        for (const rTypeKey of Object.keys(relationshipTypes)) {
+          const rTypeArray = relationshipTypes[rTypeKey];
 
-                const fileKey = `collect/${this.uniqueIdentifier}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`
-                const r = await s3Client.putObject({
-                  Bucket: process.env.S3_BUCKET,
+          const rFromType = _.groupBy(rTypeArray, 'fromType');
+          for (const rFromTypeKey of Object.keys(rFromType)) {
+            const rFromTypeArray = rFromType[rFromTypeKey];
+
+            const rToType = _.groupBy(rFromTypeArray, 'toType');
+            for (const rToTypeKey of Object.keys(rToType)) {
+              const rToTypeArray = rToType[rToTypeKey];
+
+              const json2csvParser = new Parser();
+              const csv = json2csvParser.parse(
+                rToTypeArray.map((a) => {
+                  const sanitizedRelationship = buildPropertyParameters(a);
+                  return sanitizedRelationship;
+                }),
+              );
+
+              const buf = Buffer.from(csv, 'utf8');
+
+              const fileKey = `collect/${this.uniqueIdentifier}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
+              const r = await s3Client
+                .putObject({
+                  Bucket: process.env.S3_BUCKET || '',
                   Key: fileKey,
-                  Body : buf
-                }).promise()
+                  Body: buf,
+                })
+                .promise();
 
-                const eTag = r.ETag
-                if (!eTag) throw new Error('no etag')
+              const eTag = r.ETag;
+              if (!eTag) throw new Error('no etag');
 
-                await sqsClient.sendMessage({
-                  QueueUrl: process.env.SQS_QUEUE_URL,
+              await sqsClient
+                .sendMessage({
+                  QueueUrl: process.env.SQS_QUEUE_URL || '',
                   MessageBody: eTag,
                   MessageAttributes: {
                     type: {
                       DataType: 'String',
-                      StringValue: "RELATIONSHIP"
+                      StringValue: 'RELATIONSHIP',
                     },
                     relationshipType: {
-                      DataType: "String",
-                      StringValue: rTypeKey
+                      DataType: 'String',
+                      StringValue: rTypeKey,
                     },
                     fromEntityType: {
-                      DataType: "String",
-                      StringValue: rFromTypeKey
+                      DataType: 'String',
+                      StringValue: rFromTypeKey,
                     },
                     toEntityType: {
-                      DataType: "String",
-                      StringValue: rToTypeKey
+                      DataType: 'String',
+                      StringValue: rToTypeKey,
                     },
                     fileKey: {
-                      DataType: "String",
-                      StringValue: fileKey
-                    }
-                  }
-                }).promise();
-              }  
+                      DataType: 'String',
+                      StringValue: fileKey,
+                    },
+                  },
+                })
+                .promise();
             }
-          }          
-          this.localGraphObjectStore.flushRelationships(relationships);
-          if (onRelationshipsFlushed) {
-            await onRelationshipsFlushed(relationships);
           }
-        },
-      );
+        }
+        this.localGraphObjectStore.flushRelationships(relationships);
+        if (onRelationshipsFlushed) {
+          await onRelationshipsFlushed(relationships);
+        }
+      },
+    );
   }
 
   getIndexMetadataForGraphObjectType({

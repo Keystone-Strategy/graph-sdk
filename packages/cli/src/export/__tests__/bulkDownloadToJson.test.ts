@@ -1,4 +1,4 @@
-import * as runtime from '@jupiterone/integration-sdk-runtime';
+import * as runtime from '@keystone-labs/integration-sdk-runtime';
 import { mocked } from 'ts-jest/utils';
 import axios, { AxiosInstance } from 'axios';
 import { v4 as uuid } from 'uuid';
@@ -10,11 +10,11 @@ import {
   ASSET_DOWNLOAD_LIMIT,
 } from '../bulkDownloadToJson';
 import { DEFAULT_EXPORT_DIRECTORY } from '../../commands';
-import { Entity } from '@jupiterone/integration-sdk-core';
+import { Entity } from '@keystone-labs/integration-sdk-core';
 import { TEST_API_KEY, TEST_ACCOUNT } from '../../__tests__/utils';
 
 jest.mock('axios');
-jest.mock('@jupiterone/integration-sdk-runtime');
+jest.mock('@keystone-labs/integration-sdk-runtime');
 jest.mock('../../fileSystem');
 
 const mockedRuntime = mocked(runtime, true);

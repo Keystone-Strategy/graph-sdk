@@ -6,11 +6,11 @@ import {
   IntegrationInstanceConfigField,
   IntegrationInstanceConfigFieldMap,
   IntegrationStepExecutionContext,
-} from '@jupiterone/integration-sdk-core';
+} from '@keystone-labs/integration-sdk-core';
 import {
   loadConfigFromEnvironmentVariables,
   LOCAL_INTEGRATION_INSTANCE,
-} from '@jupiterone/integration-sdk-runtime';
+} from '@keystone-labs/integration-sdk-runtime';
 
 import {
   createMockJobState,
