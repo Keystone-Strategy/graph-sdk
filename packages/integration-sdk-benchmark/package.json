@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@keystone-labs/integration-sdk-core": "1.0.0",
-    "@keystone-labs/integration-sdk-runtime": "1.0.0",
+    "@keystone-labs/integration-sdk-runtime": "1.1.0",
     "benchmark": "^2.1.4"
   }
 }

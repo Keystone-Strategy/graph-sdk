@@ -92,7 +92,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
     5,
     '0',
   );
-  private readonly timePeriod = `${process.env.EXCHANGE_START_DATE}-${EXCHANGE_END_DATE}`;
+  private readonly timePeriod = `${process.env.EXCHANGE_START_DATE}-${process.env.EXCHANGE_END_DATE}`;
   private readonly exchangeUserId = `${process.env.EXCHANGE_USER_ID}`;
 
   constructor(params?: CloudServiceCSVGraphObjectStoreParams) {
