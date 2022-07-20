@@ -23,8 +23,8 @@ import _ from 'lodash';
 import { Parser } from 'json2csv';
 import { buildPropertyParameters } from './neo4jUtilities';
 
-const s3Client = new S3({ region: 'us-east-2' });
-const sqsClient = new SQS({ region: 'us-east-2' });
+const s3Client = new S3({ region: 'us-east-1' });
+const sqsClient = new SQS({ region: 'us-east-1' });
 
 export interface CloudServiceCSVGraphObjectStoreParams {
   integrationSteps?: IntegrationStep[];
@@ -92,6 +92,8 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
     5,
     '0',
   );
+  private readonly timePeriod = `${process.env.EXCHANGE_START_DATE}-${EXCHANGE_END_DATE}`;
+  private readonly exchangeUserId = `${process.env.EXCHANGE_USER_ID}`;
 
   constructor(params?: CloudServiceCSVGraphObjectStoreParams) {
     if (params?.integrationSteps) {
@@ -170,8 +172,8 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           );
 
           const buf = Buffer.from(csv, 'utf8');
-
-          const fileKey = `collect/${this.uniqueIdentifier}-${stepId}-ENTITY-${eTypeKey}.csv`;
+          
+          const fileKey = `collect/${this.timePeriod}-${this.exchangeUserId}-${this.uniqueIdentifier}-${stepId}-ENTITY-${eTypeKey}.csv`;
           const r = await s3Client
             .putObject({
               Bucket: process.env.S3_BUCKET || '',
@@ -239,7 +241,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
 
               const buf = Buffer.from(csv, 'utf8');
 
-              const fileKey = `collect/${this.uniqueIdentifier}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
+              const fileKey = `collect/${this.timePeriod}-${this.exchangeUserId}-${this.uniqueIdentifier}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
               const r = await s3Client
                 .putObject({
                   Bucket: process.env.S3_BUCKET || '',
