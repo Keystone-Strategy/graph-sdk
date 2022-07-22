@@ -26,6 +26,13 @@ import { buildPropertyParameters } from './neo4jUtilities';
 const s3Client = new S3({ region: 'us-east-1' });
 const sqsClient = new SQS({ region: 'us-east-1' });
 
+const mongoClient = new MongoClient(process.env.MONGO_URI || '', {
+  useNewUrlParser: true,
+});
+await mongoClient.connect();
+const db = mongoClient.db('graph');
+const collectedFilesCol = db.collection('collected-files');
+
 export interface CloudServiceCSVGraphObjectStoreParams {
   integrationSteps?: IntegrationStep[];
 }
@@ -88,10 +95,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
     string,
     GraphObjectIndexMetadataMap
   >;
-  private readonly uniqueIdentifier = String(_.random(1, 99999)).padStart(
-    5,
-    '0',
-  );
+  private readonly uniqueIdentifier = process.env.UUID;
   private readonly timePeriod = `${process.env.EXCHANGE_START_DATE}-${process.env.EXCHANGE_END_DATE}`;
   private readonly exchangeUserId = `${process.env.EXCHANGE_USER_ID}`;
 
@@ -156,7 +160,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async flushEntitiesToDisk(
     onEntitiesFlushed?: (entities: Entity[]) => Promise<void>,
   ) {
-    pMap(
+    await pMap(
       this.localGraphObjectStore.collectEntitiesByStep(),
       async ([stepId, entities]) => {
         console.log('flushEntitiesToDisk', stepId);
@@ -172,8 +176,8 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           );
 
           const buf = Buffer.from(csv, 'utf8');
-          
-          const fileKey = `collect/${this.timePeriod}-${this.exchangeUserId}-${this.uniqueIdentifier}-${stepId}-ENTITY-${eTypeKey}.csv`;
+
+          const fileKey = `collect/${this.uniqueIdentifier}-${this.timePeriod}-${this.exchangeUserId}-${stepId}-ENTITY-${eTypeKey}.csv`;
           const r = await s3Client
             .putObject({
               Bucket: process.env.S3_BUCKET || '',
@@ -205,6 +209,18 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
               },
             })
             .promise();
+
+          // write to mongo
+          await collectedFilesCol.insertOne({
+            type: 'ENTITY',
+            metadata: {
+              entityType: eTypeKey,
+            },
+            fileKey: fileKey,
+            eTag: eTag,
+            createdAt: new Date(),
+            status: 'QUEUED',
+          });
         }
 
         this.localGraphObjectStore.flushEntities(entities);
@@ -216,7 +232,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async flushRelationshipsToDisk(
     onRelationshipsFlushed?: (relationships: Relationship[]) => Promise<void>,
   ) {
-    pMap(
+    await pMap(
       this.localGraphObjectStore.collectRelationshipsByStep(),
       async ([stepId, relationships]) => {
         const relationshipTypes = _.groupBy(relationships, '_type');
@@ -241,7 +257,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
 
               const buf = Buffer.from(csv, 'utf8');
 
-              const fileKey = `collect/${this.timePeriod}-${this.exchangeUserId}-${this.uniqueIdentifier}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
+              const fileKey = `collect/${this.uniqueIdentifier}-${this.timePeriod}-${this.exchangeUserId}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
               const r = await s3Client
                 .putObject({
                   Bucket: process.env.S3_BUCKET || '',
@@ -281,6 +297,20 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
                   },
                 })
                 .promise();
+
+              // write to mongo
+              await collectedFilesCol.insertOne({
+                type: 'RELATIONSHIP',
+                fileKey: fileKey,
+                eTag: eTag,
+                metadata: {
+                  relationshipType: rTypeKey,
+                  fromEntityType: rFromTypeKey,
+                  toEntityType: rToTypeKey,
+                },
+                createdAt: new Date(),
+                status: 'QUEUED',
+              });
             }
           }
         }
