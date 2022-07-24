@@ -14,6 +14,8 @@ import {
   IntegrationStep,
 } from '@keystone-labs/integration-sdk-core';
 
+import { MongoClient } from 'mongodb';
+
 import {
   iterateEntityTypeIndex,
   iterateRelationshipTypeIndex,
