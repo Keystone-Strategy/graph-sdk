@@ -25,6 +25,7 @@
     "prepack": "yarn build:dist"
   },
   "dependencies": {
+    "@keystone-labs/integration-sdk-core": "^1.0.0",
     "@keystone-labs/integration-sdk-runtime": "^1.1.0",
     "aws-sdk": "^2.1091.0",
     "chalk": "^4",
