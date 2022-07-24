@@ -28,10 +28,8 @@ import { buildPropertyParameters } from './neo4jUtilities';
 const s3Client = new S3({ region: 'us-east-1' });
 const sqsClient = new SQS({ region: 'us-east-1' });
 
-const mongoClient = new MongoClient(process.env.MONGO_URI || '', {
-  useNewUrlParser: true,
-});
-await mongoClient.connect();
+const mongoClient = new MongoClient(process.env.MONGO_URI || '');
+
 const db = mongoClient.db('graph');
 const collectedFilesColl = db.collection('sync_collected_files');
 
