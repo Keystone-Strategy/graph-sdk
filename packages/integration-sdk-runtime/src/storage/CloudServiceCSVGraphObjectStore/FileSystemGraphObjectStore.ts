@@ -33,7 +33,7 @@ const mongoClient = new MongoClient(process.env.MONGO_URI || '', {
 });
 await mongoClient.connect();
 const db = mongoClient.db('graph');
-const collectedFilesCol = db.collection('collected-files');
+const collectedFilesColl = db.collection('sync_collected_files');
 
 export interface CloudServiceCSVGraphObjectStoreParams {
   integrationSteps?: IntegrationStep[];
@@ -213,7 +213,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
             .promise();
 
           // write to mongo
-          await collectedFilesCol.insertOne({
+          await collectedFilesColl.insertOne({
             type: 'ENTITY',
             metadata: {
               entityType: eTypeKey,
@@ -301,7 +301,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
                 .promise();
 
               // write to mongo
-              await collectedFilesCol.insertOne({
+              await collectedFilesColl.insertOne({
                 type: 'RELATIONSHIP',
                 fileKey: fileKey,
                 eTag: eTag,
