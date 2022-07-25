@@ -155,7 +155,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async flushEntitiesToDisk(
     onEntitiesFlushed?: (entities: Entity[]) => Promise<void>,
   ) {
-    pMap(
+    await pMap(
       this.localGraphObjectStore.collectEntitiesByStep(),
       async ([stepId, entities]) => {
         console.log('flushEntitiesToDisk', stepId);
@@ -205,15 +205,15 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
             })
             .promise();
 
-          // write to mongo
           await this.insertToMongoCollection('graph', 'sync_collected_files', {
             type: 'ENTITY',
             metadata: {
-              entityType: eTypeKey,
+              'entity_type': eTypeKey,
             },
-            fileKey: fileKey,
-            eTag: eTag,
-            createdAt: new Date(),
+            'file_key': fileKey,
+            'e_tag': eTag,
+            'created_at': new Date(),
+            'updated_at': new Date(),
             status: 'QUEUED',
           });
         }
@@ -227,7 +227,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async flushRelationshipsToDisk(
     onRelationshipsFlushed?: (relationships: Relationship[]) => Promise<void>,
   ) {
-    pMap(
+    await pMap(
       this.localGraphObjectStore.collectRelationshipsByStep(),
       async ([stepId, relationships]) => {
         const relationshipTypes = _.groupBy(relationships, '_type');
@@ -293,17 +293,17 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
                 })
                 .promise();
 
-              // write to mongo
               await this.insertToMongoCollection('graph', 'sync_collected_files', {
                 type: 'RELATIONSHIP',
-                fileKey: fileKey,
-                eTag: eTag,
+                'file_key': fileKey,
+                'e_tag': eTag,
                 metadata: {
-                  relationshipType: rTypeKey,
-                  fromEntityType: rFromTypeKey,
-                  toEntityType: rToTypeKey,
+                  'relationship_type': rTypeKey,
+                  'from_entity_type': rFromTypeKey,
+                  'to_entity_type': rToTypeKey,
                 },
-                createdAt: new Date(),
+                'created_at': new Date(),
+                'updated_at': new Date(),
                 status: 'QUEUED',
               });
             }
