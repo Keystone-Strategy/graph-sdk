@@ -28,11 +28,6 @@ import { buildPropertyParameters } from './neo4jUtilities';
 const s3Client = new S3({ region: 'us-east-1' });
 const sqsClient = new SQS({ region: 'us-east-1' });
 
-const mongoClient = new MongoClient(process.env.MONGO_URI || '');
-
-const db = mongoClient.db('graph');
-const collectedFilesColl = db.collection('sync_collected_files');
-
 export interface CloudServiceCSVGraphObjectStoreParams {
   integrationSteps?: IntegrationStep[];
 }
@@ -211,7 +206,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
             .promise();
 
           // write to mongo
-          await collectedFilesColl.insertOne({
+          await this.insertToMongoCollection('graph', 'sync_collected_files', {
             type: 'ENTITY',
             metadata: {
               entityType: eTypeKey,
@@ -299,7 +294,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
                 .promise();
 
               // write to mongo
-              await collectedFilesColl.insertOne({
+              await this.insertToMongoCollection('graph', 'sync_collected_files', {
                 type: 'RELATIONSHIP',
                 fileKey: fileKey,
                 eTag: eTag,
@@ -335,5 +330,19 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
 
     const map = this.stepIdToGraphObjectIndexMetadataMap.get(stepId);
     return map && map[graphObjectCollectionType].get(_type);
+  }
+
+  async insertToMongoCollection(dbName: string, collectionName: string, data: any) {
+    const mongoClient = new MongoClient(process.env.MONGO_URI || '');
+    try {
+      const db = mongoClient.db(dbName);
+      const collectedFilesColl = db.collection(collectionName);
+  
+      await collectedFilesColl.insertOne(data);
+    } catch {
+      console.error(`error inserting to mongo ${data.fileKey}`);
+    } finally {
+      await mongoClient.close();
+    }
   }
 }
