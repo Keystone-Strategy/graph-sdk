@@ -160,7 +160,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async flushEntitiesToDisk(
     onEntitiesFlushed?: (entities: Entity[]) => Promise<void>,
   ) {
-    await pMap(
+    pMap(
       this.localGraphObjectStore.collectEntitiesByStep(),
       async ([stepId, entities]) => {
         console.log('flushEntitiesToDisk', stepId);
@@ -232,7 +232,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
   async flushRelationshipsToDisk(
     onRelationshipsFlushed?: (relationships: Relationship[]) => Promise<void>,
   ) {
-    await pMap(
+    pMap(
       this.localGraphObjectStore.collectRelationshipsByStep(),
       async ([stepId, relationships]) => {
         const relationshipTypes = _.groupBy(relationships, '_type');
