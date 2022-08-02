@@ -26,7 +26,6 @@ import { Parser } from 'json2csv';
 import { buildPropertyParameters } from './neo4jUtilities';
 
 const s3Client = new S3({ region: 'us-east-1' });
-const sqsClient = new SQS({ region: 'us-east-1' });
 
 export interface CloudServiceCSVGraphObjectStoreParams {
   integrationSteps?: IntegrationStep[];
@@ -184,27 +183,6 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           const eTag = r.ETag;
           if (!eTag) throw new Error('no etag');
 
-          await sqsClient
-            .sendMessage({
-              QueueUrl: process.env.SQS_QUEUE_URL || '',
-              MessageBody: eTag,
-              MessageAttributes: {
-                type: {
-                  DataType: 'String',
-                  StringValue: 'ENTITY',
-                },
-                entityType: {
-                  DataType: 'String',
-                  StringValue: eTypeKey,
-                },
-                fileKey: {
-                  DataType: 'String',
-                  StringValue: fileKey,
-                },
-              },
-            })
-            .promise();
-
           await this.insertToMongoCollection('graph', 'sync_collected_files', {
             type: 'ENTITY',
             metadata: {
@@ -263,35 +241,6 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
 
               const eTag = r.ETag;
               if (!eTag) throw new Error('no etag');
-
-              await sqsClient
-                .sendMessage({
-                  QueueUrl: process.env.SQS_QUEUE_URL || '',
-                  MessageBody: eTag,
-                  MessageAttributes: {
-                    type: {
-                      DataType: 'String',
-                      StringValue: 'RELATIONSHIP',
-                    },
-                    relationshipType: {
-                      DataType: 'String',
-                      StringValue: rTypeKey,
-                    },
-                    fromEntityType: {
-                      DataType: 'String',
-                      StringValue: rFromTypeKey,
-                    },
-                    toEntityType: {
-                      DataType: 'String',
-                      StringValue: rToTypeKey,
-                    },
-                    fileKey: {
-                      DataType: 'String',
-                      StringValue: fileKey,
-                    },
-                  },
-                })
-                .promise();
 
               await this.insertToMongoCollection('graph', 'sync_collected_files', {
                 type: 'RELATIONSHIP',
