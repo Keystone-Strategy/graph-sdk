@@ -1,7 +1,6 @@
 import pMap from 'p-map';
 
 import S3 from 'aws-sdk/clients/s3';
-import SQS from 'aws-sdk/clients/sqs';
 
 import {
   Entity,
