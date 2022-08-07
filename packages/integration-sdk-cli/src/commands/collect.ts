@@ -96,7 +96,7 @@ export function collect() {
         },
       );
 
-      log.displayExecutionResults(results);
+      await log.displayExecutionResults(results);
     });
 }
 
