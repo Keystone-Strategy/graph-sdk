@@ -31,7 +31,7 @@ export const updateMongoCollection = async (
 
     await collection.updateOne(filter, updateData);
   } catch {
-    console.error(`error updating mongo _id: ${id}`);
+    console.error(`error updating mongo filter: ${Object.keys(filter).map(key => `${key}: ${filter[key]}`).join(', ')}`);
   } finally {
     await mongoClient.close();
   }
