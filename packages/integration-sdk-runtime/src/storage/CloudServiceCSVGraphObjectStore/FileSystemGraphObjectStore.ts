@@ -11,9 +11,8 @@ import {
   GraphObjectIndexMetadata,
   GetIndexMetadataForGraphObjectTypeParams,
   IntegrationStep,
+  insertToMongoCollection,
 } from '@keystone-labs/integration-sdk-core';
-
-import { MongoClient } from 'mongodb';
 
 import {
   iterateEntityTypeIndex,
@@ -182,7 +181,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           const eTag = r.ETag;
           if (!eTag) throw new Error('no etag');
 
-          await this.insertToMongoCollection('graph', 'sync_collected_files', {
+          await insertToMongoCollection('graph', 'sync_collected_files', {
             type: 'ENTITY',
             metadata: {
               'entity_type': eTypeKey,
@@ -241,7 +240,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
               const eTag = r.ETag;
               if (!eTag) throw new Error('no etag');
 
-              await this.insertToMongoCollection('graph', 'sync_collected_files', {
+              await insertToMongoCollection('graph', 'sync_collected_files', {
                 type: 'RELATIONSHIP',
                 'file_key': fileKey,
                 'e_tag': eTag,
@@ -278,19 +277,5 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
 
     const map = this.stepIdToGraphObjectIndexMetadataMap.get(stepId);
     return map && map[graphObjectCollectionType].get(_type);
-  }
-
-  async insertToMongoCollection(dbName: string, collectionName: string, data: any) {
-    const mongoClient = new MongoClient(process.env.MONGO_URI || '');
-    try {
-      const db = mongoClient.db(dbName);
-      const collectedFilesColl = db.collection(collectionName);
-  
-      await collectedFilesColl.insertOne(data);
-    } catch {
-      console.error(`error inserting to mongo ${data.fileKey}`);
-    } finally {
-      await mongoClient.close();
-    }
   }
 }

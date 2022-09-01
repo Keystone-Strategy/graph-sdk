@@ -6,6 +6,7 @@ import {
   StepResultStatus,
   SynchronizationJob,
   Metric,
+  updateMongoCollection,
 } from '@keystone-labs/integration-sdk-core';
 
 export function debug(msg: string) {
@@ -31,10 +32,11 @@ export function displaySynchronizationResults(job: SynchronizationJob) {
   info(`Relationships uploaded: ${chalk.cyan(job.numRelationshipsUploaded)}`);
 }
 
-export function displayExecutionResults(results: ExecuteIntegrationResult) {
+export async function displayExecutionResults(results: ExecuteIntegrationResult) {
   info('\nResults:\n');
 
   let undeclaredTypesDetected: boolean = false;
+  let failuresDetected: boolean = false;
 
   results.integrationStepResults.forEach((step) => {
     logStepStatus(step);
@@ -59,8 +61,22 @@ export function displayExecutionResults(results: ExecuteIntegrationResult) {
 
         console.log('');
       }
+    } else {
+      failuresDetected = true;
     }
   });
+
+  const uniqueIdentifier = process.env.UUID;
+  await updateMongoCollection(
+    'graph',
+    'sync_job_executions',
+    { '_id': uniqueIdentifier }, 
+    {
+      $set: {
+        status: failuresDetected ? 'FAILED' : 'SUCCEEDED',
+      },
+    }
+  );
 
   if (undeclaredTypesDetected) {
     warn(
