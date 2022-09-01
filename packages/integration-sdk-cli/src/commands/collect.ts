@@ -9,6 +9,8 @@ import {
   prepareLocalStepCollection,
 } from '@keystone-labs/integration-sdk-runtime';
 
+import { updateMongoCollection } from '@keystone-labs/integration-sdk-core';
+
 import { loadConfig } from '../config';
 import * as log from '../log';
 
@@ -42,61 +44,76 @@ export function collect() {
     )
     .option('-V, --disable-schema-validation', 'disable schema validation')
     .action(async (options) => {
-      if (!options.cache && options.step.length === 0) {
-        throw new Error(
-          'Invalid option: Option --no-cache requires option --step to also be specified.',
+      try {
+        if (!options.cache && options.step.length === 0) {
+          throw new Error(
+            'Invalid option: Option --no-cache requires option --step to also be specified.',
+          );
+        }
+        if (options.cachePath && options.step.length === 0) {
+          throw new Error(
+            'Invalid option: Option --cache-path requires option --step to also be specified.',
+          );
+        }
+  
+        // Point `fileSystem.ts` functions to expected location relative to
+        // integration project path.
+        process.env.JUPITERONE_INTEGRATION_STORAGE_DIRECTORY = path.resolve(
+          options.projectPath,
+          '.j1-integration',
+        );
+  
+        if (options.step.length > 0 && options.cache && !options.cachePath) {
+          // Step option was used, cache is wanted, and no cache path was provided
+          // therefore, copy .j1-integration into .j1-integration-cache
+          await buildCacheFromJ1Integration();
+        }
+  
+        const config = prepareLocalStepCollection(
+          await loadConfig(path.join(options.projectPath, 'src')),
+          {
+            ...options,
+            dependenciesCache: {
+              enabled: options.cache,
+              filepath: getRootCacheDirectory(options.cachePath),
+            },
+          },
+        );
+        log.info('\nConfiguration loaded! Running integration...\n');
+  
+        const graphObjectStore = new CloudServiceCSVGraphObjectStore({
+          integrationSteps: config.integrationSteps,
+        });
+  
+        const enableSchemaValidation = !options.disableSchemaValidation;
+        const results = await executeIntegrationLocally(
+          config,
+          {
+            current: {
+              startedOn: Date.now(),
+            },
+          },
+          {
+            enableSchemaValidation,
+            graphObjectStore,
+          },
+        );
+  
+        await log.displayExecutionResults(results);
+      } catch (error) {
+        const uniqueIdentifier = process.env.UUID;
+        await updateMongoCollection(
+          'graph',
+          'sync_job_executions',
+          { '_id': uniqueIdentifier }, 
+          {
+            $set: {
+              status:'FAILED',
+              updated_at: new Date(),
+            },
+          }
         );
       }
-      if (options.cachePath && options.step.length === 0) {
-        throw new Error(
-          'Invalid option: Option --cache-path requires option --step to also be specified.',
-        );
-      }
-
-      // Point `fileSystem.ts` functions to expected location relative to
-      // integration project path.
-      process.env.JUPITERONE_INTEGRATION_STORAGE_DIRECTORY = path.resolve(
-        options.projectPath,
-        '.j1-integration',
-      );
-
-      if (options.step.length > 0 && options.cache && !options.cachePath) {
-        // Step option was used, cache is wanted, and no cache path was provided
-        // therefore, copy .j1-integration into .j1-integration-cache
-        await buildCacheFromJ1Integration();
-      }
-
-      const config = prepareLocalStepCollection(
-        await loadConfig(path.join(options.projectPath, 'src')),
-        {
-          ...options,
-          dependenciesCache: {
-            enabled: options.cache,
-            filepath: getRootCacheDirectory(options.cachePath),
-          },
-        },
-      );
-      log.info('\nConfiguration loaded! Running integration...\n');
-
-      const graphObjectStore = new CloudServiceCSVGraphObjectStore({
-        integrationSteps: config.integrationSteps,
-      });
-
-      const enableSchemaValidation = !options.disableSchemaValidation;
-      const results = await executeIntegrationLocally(
-        config,
-        {
-          current: {
-            startedOn: Date.now(),
-          },
-        },
-        {
-          enableSchemaValidation,
-          graphObjectStore,
-        },
-      );
-
-      await log.displayExecutionResults(results);
     });
 }
 

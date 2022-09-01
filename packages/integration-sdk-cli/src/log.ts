@@ -73,6 +73,7 @@ export async function displayExecutionResults(results: ExecuteIntegrationResult)
     { '_id': uniqueIdentifier }, 
     {
       $set: {
+        updated_at: new Date(),
         status: failuresDetected ? 'FAILED' : 'SUCCEEDED',
       },
     }
