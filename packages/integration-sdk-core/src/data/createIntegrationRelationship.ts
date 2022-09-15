@@ -258,8 +258,12 @@ function createRelationship({
   toKey,
   properties,
 }: DirectRelationshipLiteralOptions): ExplicitRelationship {
+  const _key =
+    properties && properties.alterKey
+      ? `${properties.alterKeyValue}_${fromKey}|${_type.toLowerCase()}|${toKey}`
+      : `${fromKey}|${_type.toLowerCase()}|${toKey}`;
   return {
-    _key: `${fromKey}|${_type.toLowerCase()}|${toKey}`,
+    _key,
     _type,
     _fromEntityKey: fromKey,
     _toEntityKey: toKey,
