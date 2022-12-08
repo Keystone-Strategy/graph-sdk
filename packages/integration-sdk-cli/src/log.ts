@@ -70,7 +70,7 @@ export async function displayExecutionResults(
 
   const uniqueIdentifier = process.env.UUID;
   await updateMongoCollection(
-    'graph',
+    process.env.MONGO_GRAPH_DB_NAME!,
     'sync_job_executions',
     { _id: uniqueIdentifier },
     {
