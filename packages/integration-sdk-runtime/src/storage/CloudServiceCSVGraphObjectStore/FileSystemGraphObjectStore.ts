@@ -181,7 +181,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           const eTag = r.ETag;
           if (!eTag) throw new Error('no etag');
 
-          await insertToMongoCollection('graph', 'sync_collected_files', {
+          await insertToMongoCollection(process.env.MONGO_GRAPH_DB_NAME!, 'sync_collected_files', {
             type: 'ENTITY',
             metadata: {
               'entity_type': eTypeKey,
@@ -240,7 +240,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
               const eTag = r.ETag;
               if (!eTag) throw new Error('no etag');
 
-              await insertToMongoCollection('graph', 'sync_collected_files', {
+              await insertToMongoCollection(process.env.MONGO_GRAPH_DB_NAME!, 'sync_collected_files', {
                 type: 'RELATIONSHIP',
                 'file_key': fileKey,
                 'e_tag': eTag,

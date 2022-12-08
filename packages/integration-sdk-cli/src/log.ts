@@ -32,7 +32,9 @@ export function displaySynchronizationResults(job: SynchronizationJob) {
   info(`Relationships uploaded: ${chalk.cyan(job.numRelationshipsUploaded)}`);
 }
 
-export async function displayExecutionResults(results: ExecuteIntegrationResult) {
+export async function displayExecutionResults(
+  results: ExecuteIntegrationResult,
+) {
   info('\nResults:\n');
 
   let undeclaredTypesDetected: boolean = false;
@@ -68,14 +70,14 @@ export async function displayExecutionResults(results: ExecuteIntegrationResult)
 
   const uniqueIdentifier = process.env.UUID;
   await updateMongoCollection(
-    'graph',
+    process.env.MONGO_GRAPH_DB_NAME!,
     'sync_job_executions',
-    { '_id': uniqueIdentifier }, 
+    { _id: uniqueIdentifier },
     {
       $set: {
         status: failuresDetected ? 'FAILED' : 'SUCCEEDED',
       },
-    }
+    },
   );
 
   if (undeclaredTypesDetected) {
