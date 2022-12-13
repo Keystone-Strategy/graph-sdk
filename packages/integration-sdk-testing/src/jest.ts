@@ -661,6 +661,7 @@ export function toMatchStepMetadata(
           `Expected >0 entities of _type=${entityMetadata._type}, got 0.`,
       };
     }
+    // @ts-expect-error TODO
     const { pass, message } = toMatchGraphObjectSchema(targets, entityMetadata);
     if (pass === false) {
       return {
