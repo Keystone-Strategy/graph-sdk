@@ -172,7 +172,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           const fileKey = `collect/${this.uniqueIdentifier}-${this.timePeriod}-${this.exchangeUserId}-${stepId}-ENTITY-${eTypeKey}.csv`;
           const r = await s3Client
             .putObject({
-              Bucket: process.env.S3_BUCKET || '',
+              Bucket: process.env.AIRFLOW_SOURCE_S3_BUCKET || '',
               Key: fileKey,
               Body: buf,
             })
@@ -231,7 +231,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
               const fileKey = `collect/${this.uniqueIdentifier}-${this.timePeriod}-${this.exchangeUserId}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
               const r = await s3Client
                 .putObject({
-                  Bucket: process.env.S3_BUCKET || '',
+                  Bucket: process.env.AIRFLOW_SOURCE_S3_BUCKET || '',
                   Key: fileKey,
                   Body: buf,
                 })
