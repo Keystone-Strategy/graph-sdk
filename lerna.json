@@ -1,5 +1,5 @@
 {
   "npmClient": "yarn",
-  "packages": ["packages/integration-sdk-cli", "packages/integration-sdk-runtime", "packages/integration-sdk-core"],
+  "packages": ["packages/integration-sdk-*", "packages/cli"],
   "version": "independent"
 }
