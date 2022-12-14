@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@keystone-labs/integration-sdk-core": "^2.0.1",
-    "@keystone-labs/integration-sdk-runtime": "^1.1.0",
+    "@keystone-labs/integration-sdk-runtime": "^3.0.1",
     "aws-sdk": "^2.1091.0",
     "chalk": "^4",
     "commander": "^5.0.0",
