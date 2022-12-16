@@ -122,7 +122,7 @@ export function run() {
 
         await eventPublishingQueue.onIdle();
 
-        log.displayExecutionResults(executionResults);
+        void log.displayExecutionResults(executionResults);
 
         const synchronizationResult = await finalizeSynchronization({
           ...synchronizationContext,
