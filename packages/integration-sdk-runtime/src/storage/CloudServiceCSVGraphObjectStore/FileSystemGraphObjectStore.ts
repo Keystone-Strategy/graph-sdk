@@ -172,7 +172,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           const fileKey = `collect/${this.uniqueIdentifier}-${this.timePeriod}-${this.exchangeUserId}-${stepId}-ENTITY-${eTypeKey}.csv`;
           const r = await s3Client
             .putObject({
-              Bucket: process.env.AIRFLOW_SOURCE_S3_BUCKET || '',
+              Bucket: process.env.COLLECT_FILES_S3_BUCKET || '',
               Key: fileKey,
               Body: buf,
             })
@@ -181,17 +181,21 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
           const eTag = r.ETag;
           if (!eTag) throw new Error('no etag');
 
-          await insertToMongoCollection(process.env.MONGO_GRAPH_DB_NAME!, 'sync_collected_files', {
-            type: 'ENTITY',
-            metadata: {
-              'entity_type': eTypeKey,
+          await insertToMongoCollection(
+            process.env.MONGO_GRAPH_DB_NAME!,
+            'sync_collected_files',
+            {
+              type: 'ENTITY',
+              metadata: {
+                entity_type: eTypeKey,
+              },
+              file_key: fileKey,
+              e_tag: eTag,
+              created_at: new Date(),
+              updated_at: new Date(),
+              status: 'QUEUED',
             },
-            'file_key': fileKey,
-            'e_tag': eTag,
-            'created_at': new Date(),
-            'updated_at': new Date(),
-            status: 'QUEUED',
-          });
+          );
         }
 
         this.localGraphObjectStore.flushEntities(entities);
@@ -231,7 +235,7 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
               const fileKey = `collect/${this.uniqueIdentifier}-${this.timePeriod}-${this.exchangeUserId}-${stepId}-RELATIONSHIP-${rTypeKey}-${rFromTypeKey}-${rToTypeKey}.csv`;
               const r = await s3Client
                 .putObject({
-                  Bucket: process.env.AIRFLOW_SOURCE_S3_BUCKET || '',
+                  Bucket: process.env.COLLECT_FILES_S3_BUCKET || '',
                   Key: fileKey,
                   Body: buf,
                 })
@@ -240,19 +244,23 @@ export class CloudServiceCSVGraphObjectStore implements GraphObjectStore {
               const eTag = r.ETag;
               if (!eTag) throw new Error('no etag');
 
-              await insertToMongoCollection(process.env.MONGO_GRAPH_DB_NAME!, 'sync_collected_files', {
-                type: 'RELATIONSHIP',
-                'file_key': fileKey,
-                'e_tag': eTag,
-                metadata: {
-                  'relationship_type': rTypeKey,
-                  'from_entity_type': rFromTypeKey,
-                  'to_entity_type': rToTypeKey,
+              await insertToMongoCollection(
+                process.env.MONGO_GRAPH_DB_NAME!,
+                'sync_collected_files',
+                {
+                  type: 'RELATIONSHIP',
+                  file_key: fileKey,
+                  e_tag: eTag,
+                  metadata: {
+                    relationship_type: rTypeKey,
+                    from_entity_type: rFromTypeKey,
+                    to_entity_type: rToTypeKey,
+                  },
+                  created_at: new Date(),
+                  updated_at: new Date(),
+                  status: 'QUEUED',
                 },
-                'created_at': new Date(),
-                'updated_at': new Date(),
-                status: 'QUEUED',
-              });
+              );
             }
           }
         }
