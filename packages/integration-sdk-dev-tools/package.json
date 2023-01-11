@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@jupiterone/integration-sdk-testing": "^9.0.0",
-    "@keystone-labs/integration-sdk-cli": "1.0.1",
+    "@keystone-labs/integration-sdk-cli": "^4.0.0",
     "@types/jest": "^27.1.0",
     "@types/node": "^14.0.5",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
