@@ -1,6 +1,6 @@
 {
   "name": "@keystone-labs/integration-sdk-cli",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "description": "The SDK for developing JupiterOne integrations",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -58,5 +58,6 @@
     "memfs": "^3.2.0",
     "neo-forgery": "^2.0.0",
     "uuid": "^8.2.0"
-  }
+  },
+  "gitHead": "932c7f8b9d9eff5e469df3e6f0a124c9f07f2337"
 }
